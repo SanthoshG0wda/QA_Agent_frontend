@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --surface-bg: #F4F4F5;
+    --surface-card: #FFFFFF;
+    --surface-sidebar: #FFFFFF;
+    --surface-border: #E4E4E7;
+    --surface-hover: #F4F4F5;
+    --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    --text-primary: #18181B;
+    --text-secondary: #71717A;
+    --text-muted: #A1A1AA;
+    --input-bg: #F4F4F5;
+  }
+  .dark {
+    --surface-bg: #0A0A0A;
+    --surface-card: #18181B;
+    --surface-sidebar: #111111;
+    --surface-border: #27272A;
+    --surface-hover: #1f1f23;
+    --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    --text-primary: #FAFAFA;
+    --text-secondary: #A1A1AA;
+    --text-muted: #52525B;
+    --input-bg: #1a1a1e;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #27272A transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #27272A;
+    border-radius: 3px;
+  }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--surface-bg);
+    color: var(--text-primary);
+  }
+  input, select, textarea, button {
+    font-family: inherit;
+  }
+}
+
+@layer components {
+  .glass {
+    background: color-mix(in srgb, var(--surface-card) 80%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--surface-border) 50%, transparent);
+  }
+  .glass-light {
+    background: color-mix(in srgb, var(--surface-card) 10%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid color-mix(in srgb, var(--surface-border) 20%, transparent);
+  }
+  .card {
+    @apply rounded-xl border shadow-card;
+    background-color: var(--surface-card);
+    border-color: var(--surface-border);
+  }
+  .card-hover {
+    @apply transition-all duration-200 hover:bg-surface-hover hover:border-accent/30 hover:shadow-glow;
+  }
+  .btn-primary {
+    @apply text-white px-5 py-3 rounded-xl text-base font-semibold transition-all duration-200
+           active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed
+           focus:outline-none focus:ring-2 focus:ring-accent/50;
+    background-color: #3B82F6;
+  }
+  .btn-primary:hover {
+    background-color: #2563EB;
+  }
+  .btn-ghost {
+    @apply px-4 py-2.5 rounded-xl text-base font-medium transition-all duration-200
+           active:scale-[0.98];
+    color: var(--text-secondary);
+  }
+  .btn-ghost:hover {
+    background-color: var(--surface-hover);
+    color: var(--text-primary);
+  }
+  .input-dark {
+    @apply w-full border rounded-xl px-4 py-3 text-base
+           placeholder-[#52525B] focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/50
+           transition-all duration-200;
+    background-color: var(--input-bg);
+    border-color: var(--surface-border);
+    color: var(--text-primary);
+  }
+  .badge-green {
+    @apply text-sm px-3 py-1 rounded-full border;
+    background-color: color-mix(in srgb, #22C55E 10%, transparent);
+    color: #22C55E;
+    border-color: color-mix(in srgb, #22C55E 20%, transparent);
+  }
+  .badge-red {
+    @apply text-sm px-3 py-1 rounded-full border;
+    background-color: color-mix(in srgb, #EF4444 10%, transparent);
+    color: #EF4444;
+    border-color: color-mix(in srgb, #EF4444 20%, transparent);
+  }
+  .badge-yellow {
+    @apply text-sm px-3 py-1 rounded-full border;
+    background-color: color-mix(in srgb, #F59E0B 10%, transparent);
+    color: #F59E0B;
+    border-color: color-mix(in srgb, #F59E0B 20%, transparent);
+  }
+  .skeleton {
+    @apply rounded-xl animate-pulse;
+    background-color: var(--surface-hover);
+  }
+}
