@@ -30,7 +30,7 @@ export default function UploadPage() {
           <h1 className="text-3xl font-bold text-[#FAFAFA] flex items-center gap-3">
             <Upload size={28} className="text-accent" /> Upload Call
           </h1>
-          <p className="text-base text-[#A1A1AA] mt-2">Upload a call recording for AI-powered QA evaluation</p>
+          <p className="text-base text-[#A1A1AA] mt-2">Upload a call recording for EchoPeak AI analysis</p>
         </div>
         <UploadForm onEvaluate={handleUpload} loading={loading} error={error} />
         {!loading && <EvaluationList />}

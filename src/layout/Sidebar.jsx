@@ -50,12 +50,12 @@ export default function Sidebar() {
       } lg:translate-x-0`}>
         <div className="p-7 border-b border-surface-border">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-accent to-purple-600 flex items-center justify-center">
-              <Headphones size={22} className="text-white" />
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-accent to-purple-600 flex items-center justify-center text-white font-extrabold text-lg tracking-tight">
+              EP
             </div>
             <div>
-              <h2 className="text-lg font-bold text-[#FAFAFA]">CallAudit</h2>
-              <p className="text-xs text-[#A1A1AA] tracking-widest uppercase font-medium">AI Intelligence</p>
+              <h2 className="text-lg font-bold text-[#FAFAFA] tracking-tight">EchoPeak</h2>
+              <p className="text-[10px] text-[#A1A1AA] tracking-widest uppercase font-medium">Smarter Call Quality Intelligence</p>
             </div>
           </div>
         </div>

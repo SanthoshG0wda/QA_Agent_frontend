@@ -103,6 +103,15 @@ export default function ResultsPage() {
           </motion.div>
         ) : (
           <>
+            <div className="flex items-center gap-4 mb-2">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-purple-600 flex items-center justify-center text-white font-extrabold text-sm tracking-tight shadow-lg shadow-accent/20">
+                EP
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-[#FAFAFA] tracking-tight">EchoPeak Analysis Report</h2>
+                <p className="text-sm text-[#A1A1AA]">AI-Powered Call Quality Assessment</p>
+              </div>
+            </div>
             {evaluation.agent_name && (
               <motion.div
                 initial={{ opacity: 0, y: 16 }}

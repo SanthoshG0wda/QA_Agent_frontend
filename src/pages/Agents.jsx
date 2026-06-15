@@ -41,7 +41,7 @@ export default function Agents() {
         ) : agents.length === 0 ? (
           <EmptyState
             title="No agents yet"
-            description="Create your first agent to start tracking call quality and performance."
+            description="Create your first agent to start tracking performance with EchoPeak."
             actionLabel="Add Agent"
             onAction={() => navigate('/agents/new')}
           />

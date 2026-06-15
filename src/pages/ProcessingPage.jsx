@@ -6,10 +6,10 @@ import PageTransition from '../components/PageTransition'
 import { Loader2, CheckCircle2, XCircle, AlertCircle, Mic, Users, Brain, ShieldAlert } from 'lucide-react'
 
 const STEPS = [
-  { key: 'transcription', label: 'Transcription', icon: Mic },
-  { key: 'speaker_detection', label: 'Speaker Detection', icon: Users },
-  { key: 'qa_evaluation', label: 'QA Evaluation', icon: Brain },
-  { key: 'error_analysis', label: 'Critical Error Analysis', icon: ShieldAlert },
+  { key: 'uploading', label: 'Uploading Audio...', icon: Mic },
+  { key: 'transcribing', label: 'Transcribing Conversation...', icon: Users },
+  { key: 'speakers', label: 'Identifying Speakers...', icon: Brain },
+  { key: 'insights', label: 'Generating Insights...', icon: ShieldAlert },
 ]
 
 function getStepStatus(stepIndex, elapsedMs) {
@@ -134,8 +134,8 @@ export default function ProcessingPage() {
                   <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto">
                     <Loader2 size={36} className="text-accent animate-spin" />
                   </div>
-                  <h2 className="text-2xl font-bold text-[#FAFAFA]">Analyzing Call...</h2>
-                  <p className="text-[#A1A1AA]">Please wait while the AI processes your recording.</p>
+                  <h2 className="text-2xl font-bold text-[#FAFAFA]">EchoPeak is analyzing your call...</h2>
+                  <p className="text-[#A1A1AA]">AI-powered conversation analysis in progress</p>
                 </div>
 
                 <div className="space-y-3 max-w-md mx-auto text-left">

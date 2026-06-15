@@ -52,7 +52,7 @@ export default function Calls() {
         ) : calls.length === 0 ? (
           <EmptyState
             title="No calls found"
-            description="Upload a call recording to get started."
+            description="Upload your first call and let EchoPeak uncover actionable insights."
             actionLabel="Upload Call"
             onAction={() => navigate('/upload')}
           />

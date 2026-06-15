@@ -28,7 +28,7 @@ export default function UploadForm({ onEvaluate, loading, error }) {
   return (
     <div className="card p-8">
       <h2 className="text-xl font-bold text-[#FAFAFA] mb-2">Upload Call Recording</h2>
-      <p className="text-base text-[#A1A1AA] mb-8">Upload an audio file to analyze and evaluate call quality</p>
+      <p className="text-base text-[#A1A1AA] mb-8">Upload a call recording and let EchoPeak analyze it for quality intelligence</p>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div
           onClick={() => inputRef.current?.click()}

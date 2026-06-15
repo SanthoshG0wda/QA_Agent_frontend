@@ -48,7 +48,7 @@ export default function Evaluations() {
         ) : filtered.length === 0 ? (
           <EmptyState
             title={search ? 'No matching evaluations' : 'No evaluations yet'}
-            description={search ? 'Try a different search term' : 'Upload a call to generate the first evaluation.'}
+            description={search ? 'Try a different search term' : 'Upload a call to generate your first EchoPeak analysis.'}
             actionLabel={search ? undefined : 'Upload Call'}
             onAction={search ? undefined : () => navigate('/upload')}
           />

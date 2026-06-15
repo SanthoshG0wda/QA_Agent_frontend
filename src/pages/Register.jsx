@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { register } from '../services/api'
 import { useAuth } from '../context/AuthContext'
-import { Headphones, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 
 export default function Register() {
   const navigate = useNavigate()
@@ -30,19 +30,24 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen bg-surface flex items-center justify-center p-6">
+    <div className="min-h-screen bg-surface flex items-center justify-center p-6 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-purple-600/5 pointer-events-none" />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md"
+        className="w-full max-w-md relative z-10"
       >
         <div className="card p-10">
           <div className="text-center mb-10">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent to-purple-600 flex items-center justify-center mx-auto mb-5">
-              <Headphones size={32} className="text-white" />
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent to-purple-600 flex items-center justify-center mx-auto mb-4 text-white font-extrabold text-lg tracking-tight">
+              EP
             </div>
-            <h1 className="text-2xl font-bold text-[#FAFAFA]">Create account</h1>
-            <p className="text-base text-[#A1A1AA] mt-2">Get started with CallAudit AI</p>
+            <h1 className="text-2xl font-bold text-[#FAFAFA]">EchoPeak</h1>
+            <p className="text-sm text-[#A1A1AA] mt-1">Smarter Call Quality Intelligence</p>
+            <div className="mt-6 pt-6 border-t border-surface-border">
+              <h2 className="text-xl font-bold text-[#FAFAFA]">Create account</h2>
+              <p className="text-base text-[#A1A1AA] mt-1">Get started with EchoPeak</p>
+            </div>
           </div>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
