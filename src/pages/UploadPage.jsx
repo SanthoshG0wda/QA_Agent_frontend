@@ -16,7 +16,7 @@ export default function UploadPage() {
     setError('')
     try {
       const data = await uploadAudio(file)
-      navigate('/calls')
+      navigate(`/processing/${data.call_id}`)
     } catch (err) {
       setError(err.response?.data?.detail || 'Upload failed')
       setLoading(false)

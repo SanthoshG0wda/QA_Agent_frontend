@@ -140,3 +140,8 @@ export async function getAgentEvaluations(agentId) {
   const { data } = await API.get(`/api/agents/${agentId}/evaluations`)
   return data
 }
+
+export async function getCallStatus(callId) {
+  const { data } = await API.get(`/api/calls/${callId}/status`)
+  return data
+}

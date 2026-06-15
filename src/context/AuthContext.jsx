@@ -45,4 +45,10 @@ export function AuthProvider({ children }) {
   )
 }
 
-export const useAuth = () => useContext(AuthContext)
+export const useAuth = () => {
+  const ctx = useContext(AuthContext)
+  if (!ctx) {
+    return { user: null, loading: false, loginUser: () => {}, logout: () => {} }
+  }
+  return ctx
+}

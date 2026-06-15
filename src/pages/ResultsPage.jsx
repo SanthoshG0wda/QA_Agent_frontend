@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { getEvaluation, getCallEvaluation } from '../services/api'
+import { getEvaluation, getCallEvaluation, getCallStatus } from '../services/api'
 import ScoreCard from '../components/ScoreCard'
 import TranscriptViewer from '../components/TranscriptViewer'
 import { EvalSkeleton } from '../components/Skeleton'
@@ -26,21 +26,23 @@ export default function ResultsPage() {
 
     const fetchData = async () => {
       try {
-        const data = await getEvaluation(id)
+        const status = await getCallStatus(id)
+        if (cancelled) return
+        const data = await getCallEvaluation(id)
+        if (cancelled) return
+        if (data.processing_status === 'processing' || data.processing_status === 'pending') {
+          if (pollCount < 30) {
+            setTimeout(() => setPollCount(p => p + 1), 2000)
+            if (!cancelled) setLoading(true)
+            return
+          }
+        }
         if (!cancelled) setEvaluation(data)
       } catch {
+        if (cancelled) return
         try {
-          const data = await getCallEvaluation(id)
-          if (!cancelled) {
-            if (data.processing_status === 'processing' || data.processing_status === 'pending') {
-              if (pollCount < 30) {
-                setTimeout(() => setPollCount(p => p + 1), 2000)
-                if (!cancelled) setLoading(true)
-                return
-              }
-            }
-            setEvaluation(data)
-          }
+          const data = await getEvaluation(id)
+          if (!cancelled) setEvaluation(data)
         } catch {
           if (!cancelled) setError('Evaluation not found')
         }

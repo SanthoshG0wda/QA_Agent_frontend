@@ -8,6 +8,7 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import UploadPage from './pages/UploadPage'
 import ResultsPage from './pages/ResultsPage'
+import ProcessingPage from './pages/ProcessingPage'
 import Calls from './pages/Calls'
 import Evaluations from './pages/Evaluations'
 import Analytics from './pages/Analytics'
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<ProtectedLayout><Dashboard /></ProtectedLayout>} />
           <Route path="/upload" element={<ProtectedLayout><UploadPage /></ProtectedLayout>} />
+          <Route path="/processing/:callId" element={<ProtectedLayout><ProcessingPage /></ProtectedLayout>} />
           <Route path="/results/:id" element={<ProtectedLayout><ResultsPage /></ProtectedLayout>} />
           <Route path="/calls" element={<ProtectedLayout><Calls /></ProtectedLayout>} />
           <Route path="/evaluations" element={<ProtectedLayout><Evaluations /></ProtectedLayout>} />

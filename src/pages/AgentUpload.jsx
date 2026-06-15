@@ -43,8 +43,8 @@ export default function AgentUpload() {
     setLoading(true)
     setError('')
     try {
-      await uploadAgentAudio(id, file)
-      navigate('/calls')
+      const data = await uploadAgentAudio(id, file)
+      navigate(`/processing/${data.call_id}`)
     } catch (err) {
       setError(err.response?.data?.detail || 'Upload and evaluation failed')
       setLoading(false)
