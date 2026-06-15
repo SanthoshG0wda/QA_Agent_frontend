@@ -37,9 +37,12 @@ export async function getMe() {
   return data
 }
 
-export async function uploadAudio(file) {
+export async function uploadAudio(file, extra = {}) {
   const form = new FormData()
   form.append('file', file)
+  if (extra.agent_id) form.append('agent_id', extra.agent_id)
+  if (extra.department_id) form.append('department_id', extra.department_id)
+  if (extra.notes) form.append('notes', extra.notes)
   const { data } = await API.post('/api/upload', form)
   return data
 }
@@ -119,8 +122,58 @@ export async function getAgent(agentId) {
   return data
 }
 
-export async function createAgent(name, email, department) {
-  const { data } = await API.post('/api/agents', { name, email, department })
+export async function createAgent(name, email, department_id, department_name) {
+  const { data } = await API.post('/api/agents', { name, email, department_id, department_name })
+  return data
+}
+
+export async function listDepartments() {
+  const { data } = await API.get('/api/departments')
+  return data
+}
+
+export async function createDepartment(name) {
+  const { data } = await API.post('/api/departments', { name })
+  return data
+}
+
+export async function deleteDepartment(id) {
+  const { data } = await API.delete(`/api/departments/${id}`)
+  return data
+}
+
+export async function listAgentsByDepartment(departmentId) {
+  const { data } = await API.get(`/api/agents/department/${departmentId}`)
+  return data
+}
+
+export async function listNotifications() {
+  const { data } = await API.get('/api/notifications')
+  return data
+}
+
+export async function getUnreadCount() {
+  const { data } = await API.get('/api/notifications/unread-count')
+  return data
+}
+
+export async function markNotificationRead(id) {
+  const { data } = await API.put(`/api/notifications/${id}/read`)
+  return data
+}
+
+export async function markAllNotificationsRead() {
+  const { data } = await API.put('/api/notifications/read-all')
+  return data
+}
+
+export async function listJobs() {
+  const { data } = await API.get('/api/jobs')
+  return data
+}
+
+export async function getJob(jobId) {
+  const { data } = await API.get(`/api/jobs/${jobId}`)
   return data
 }
 
@@ -143,5 +196,15 @@ export async function getAgentEvaluations(agentId) {
 
 export async function getCallStatus(callId) {
   const { data } = await API.get(`/api/calls/${callId}/status`)
+  return data
+}
+
+export async function getDepartmentStats(departmentId) {
+  const { data } = await API.get(`/api/departments/${departmentId}/stats`)
+  return data
+}
+
+export async function getDepartmentAnalytics(departmentId) {
+  const { data } = await API.get(`/api/analytics/department/${departmentId}`)
   return data
 }

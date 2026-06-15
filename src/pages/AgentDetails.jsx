@@ -7,8 +7,23 @@ import { CardSkeleton, TableSkeleton } from '../components/Skeleton'
 import EmptyState from '../components/EmptyState'
 import {
   ArrowLeft, Phone, Star, AlertTriangle, Upload, ExternalLink,
-  User, Mail, Building2, Calendar
+  User, Mail, Building2, Calendar, TrendingUp
 } from 'lucide-react'
+import {
+  LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer
+} from 'recharts'
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload?.length) {
+    return (
+      <div className="glass p-4 rounded-xl text-base shadow-glow">
+        <p className="text-[#A1A1AA] mb-1">{label}</p>
+        <p className="font-bold text-lg text-[#FAFAFA]">{payload[0].value}%</p>
+      </div>
+    )
+  }
+  return null
+}
 
 export default function AgentDetails() {
   const { id } = useParams()
@@ -77,7 +92,7 @@ export default function AgentDetails() {
                 <h1 className="text-3xl font-bold text-[#FAFAFA]">{agent.name}</h1>
                 <div className="flex items-center gap-4 mt-2 text-sm text-[#A1A1AA]">
                   <span className="flex items-center gap-1.5"><Mail size={16} /> {agent.email}</span>
-                  <span className="flex items-center gap-1.5"><Building2 size={16} /> {agent.department || 'General'}</span>
+                  <span className="flex items-center gap-1.5"><Building2 size={16} /> {agent.department_name || agent.department || 'General'}</span>
                 </div>
               </div>
             </div>
@@ -112,6 +127,31 @@ export default function AgentDetails() {
             )
           })}
         </div>
+
+        {evaluations.length > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="card p-6"
+          >
+            <h2 className="text-lg font-semibold text-[#FAFAFA] mb-5 flex items-center gap-2">
+              <TrendingUp size={20} className="text-accent" /> Performance Trend
+            </h2>
+            <ResponsiveContainer width="100%" height={250}>
+              <LineChart data={[...evaluations].reverse().map((e, i) => ({
+                name: `#${i + 1}`,
+                score: e.overall_score || 0,
+              }))}>
+                <XAxis dataKey="name" stroke="#52525B" fontSize={13} tickLine={false} axisLine={false} />
+                <YAxis domain={[0, 100]} stroke="#52525B" fontSize={13} tickLine={false} axisLine={false} />
+                <Tooltip content={<CustomTooltip />} />
+                <Line type="monotone" dataKey="score" stroke="#3B82F6" strokeWidth={2.5}
+                  dot={{ fill: '#3B82F6', r: 4 }} activeDot={{ r: 7, fill: '#3B82F6' }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </motion.div>
+        )}
 
         <div className="card">
           <div className="p-5 border-b border-surface-border">

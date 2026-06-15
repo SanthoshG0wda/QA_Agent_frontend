@@ -3,18 +3,20 @@ import { NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   LayoutDashboard, Users, UserPlus, Upload, Phone, Star,
-  BarChart3, Shield, Settings, LogOut, X, Menu, Headphones, Sun, Moon
+  BarChart3, Shield, Settings, LogOut, X, Menu, Building2, Sun, Moon, Briefcase
 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 const menuItems = [
   { label: 'Dashboard', path: '/', icon: LayoutDashboard },
+  { label: 'Upload Call', path: '/upload', icon: Upload },
   { label: 'Agents', path: '/agents', icon: Users },
   { label: 'Add Agent', path: '/agents/new', icon: UserPlus },
-  // { label: 'Upload Call', path: '/upload', icon: Upload },
+  { label: 'Departments', path: '/departments', icon: Building2, adminOnly: true },
   { label: 'Calls', path: '/calls', icon: Phone },
   { label: 'Evaluations', path: '/evaluations', icon: Star },
   { label: 'Analytics', path: '/analytics', icon: BarChart3 },
+  { label: 'Jobs', path: '/jobs', icon: Briefcase },
   { label: 'Users', path: '/users', icon: Shield, adminOnly: true },
   { label: 'Profile', path: '/profile', icon: Settings },
 ]
@@ -95,13 +97,15 @@ export default function Sidebar() {
         </nav>
 
         <div className="p-4 border-t border-surface-border space-y-1.5">
-          <button
-            onClick={() => setDark(!dark)}
-            className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-base font-medium text-[#A1A1AA] hover:text-[#FAFAFA] hover:bg-surface-hover transition-all duration-200"
-          >
-            {dark ? <Sun size={20} /> : <Moon size={20} />}
-            {dark ? 'Light Mode' : 'Dark Mode'}
-          </button>
+          <div className="px-4 py-1">
+            <button
+              onClick={() => setDark(!dark)}
+              className="flex items-center gap-3 text-base font-medium text-[#A1A1AA] hover:text-[#FAFAFA] transition-all duration-200"
+            >
+              {dark ? <Sun size={20} /> : <Moon size={20} />}
+              {dark ? 'Light Mode' : 'Dark Mode'}
+            </button>
+          </div>
           <div className="flex items-center gap-3 px-4 py-3 rounded-xl">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-purple-600 flex items-center justify-center text-white text-sm font-bold">
               {user?.name?.charAt(0)?.toUpperCase() || 'U'}

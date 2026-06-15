@@ -18,6 +18,9 @@ import Agents from './pages/Agents'
 import AddAgent from './pages/AddAgent'
 import AgentDetails from './pages/AgentDetails'
 import AgentUpload from './pages/AgentUpload'
+import Departments from './pages/Departments'
+import DepartmentDetail from './pages/DepartmentDetail'
+import Jobs from './pages/Jobs'
 
 function ProtectedLayout({ children, roles }) {
   return (
@@ -46,6 +49,9 @@ export default function App() {
           <Route path="/agents/new" element={<ProtectedLayout><AddAgent /></ProtectedLayout>} />
           <Route path="/agents/:id" element={<ProtectedLayout><AgentDetails /></ProtectedLayout>} />
           <Route path="/agents/:id/upload" element={<ProtectedLayout><AgentUpload /></ProtectedLayout>} />
+          <Route path="/departments" element={<ProtectedLayout roles={['admin']}><Departments /></ProtectedLayout>} />
+          <Route path="/departments/:id" element={<ProtectedLayout><DepartmentDetail /></ProtectedLayout>} />
+          <Route path="/jobs" element={<ProtectedLayout><Jobs /></ProtectedLayout>} />
           <Route path="/users" element={<ProtectedLayout roles={['admin']}><Users /></ProtectedLayout>} />
           <Route path="/profile" element={<ProtectedLayout><Profile /></ProtectedLayout>} />
         </Routes>

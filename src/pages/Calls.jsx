@@ -1,24 +1,37 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { getCalls, deleteCall } from '../services/api'
+import { getCalls, deleteCall, listDepartments } from '../services/api'
 import { useAuth } from '../context/AuthContext'
 import { TableSkeleton } from '../components/Skeleton'
 import EmptyState from '../components/EmptyState'
 import ConfirmModal from '../components/ConfirmModal'
 import PageTransition from '../components/PageTransition'
-import { Phone, Trash2, ExternalLink, Calendar, FileAudio } from 'lucide-react'
+import { Phone, Trash2, ExternalLink, Calendar, FileAudio, Search, Filter, Clock, User } from 'lucide-react'
+
+function formatDuration(sec) {
+  if (!sec && sec !== 0) return '-'
+  const m = Math.floor(sec / 60)
+  const s = Math.floor(sec % 60)
+  return `${m}:${s.toString().padStart(2, '0')}`
+}
 
 export default function Calls() {
   const navigate = useNavigate()
   const { user } = useAuth()
   const [calls, setCalls] = useState([])
+  const [depts, setDepts] = useState([])
   const [loading, setLoading] = useState(true)
   const [deleteTarget, setDeleteTarget] = useState(null)
+  const [search, setSearch] = useState('')
+  const [filterDept, setFilterDept] = useState('')
+  const [filterStatus, setFilterStatus] = useState('')
 
   const load = () => {
     setLoading(true)
-    getCalls().then(setCalls).catch(() => {}).finally(() => setLoading(false))
+    Promise.all([getCalls(), listDepartments()])
+      .then(([c, d]) => { setCalls(c); setDepts(d) })
+      .catch(() => {}).finally(() => setLoading(false))
   }
 
   useEffect(() => { load() }, [])
@@ -29,6 +42,13 @@ export default function Calls() {
     setDeleteTarget(null)
     load()
   }
+
+  const filtered = calls.filter(c => {
+    if (search && !c.filename?.toLowerCase().includes(search.toLowerCase()) && !c.agent_name?.toLowerCase().includes(search.toLowerCase())) return false
+    if (filterDept && c.department_id !== filterDept) return false
+    if (filterStatus && c.processing_status !== filterStatus) return false
+    return true
+  })
 
   return (
     <PageTransition>
@@ -44,7 +64,28 @@ export default function Calls() {
           <h1 className="text-3xl font-bold text-[#FAFAFA] flex items-center gap-3">
             <Phone size={28} className="text-accent" /> Calls
           </h1>
-          <p className="text-base text-[var(--text-secondary)] mt-2">View all uploaded call recordings</p>
+          <p className="text-base text-[#A1A1AA] mt-2">View all uploaded call recordings</p>
+        </div>
+
+        <div className="flex flex-wrap gap-4">
+          <div className="relative flex-1 min-w-[200px]">
+            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#52525B]" />
+            <input type="text" placeholder="Search agent or file..." value={search}
+              onChange={(e) => setSearch(e.target.value)} className="input-dark pl-11 py-3 w-full" />
+          </div>
+          <select value={filterDept} onChange={(e) => setFilterDept(e.target.value)}
+            className="input-dark min-w-[160px] appearance-none cursor-pointer">
+            <option value="">All Departments</option>
+            {depts.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
+          </select>
+          <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}
+            className="input-dark min-w-[140px] appearance-none cursor-pointer">
+            <option value="">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="processing">Processing</option>
+            <option value="completed">Completed</option>
+            <option value="failed">Failed</option>
+          </select>
         </div>
 
         {loading ? (
@@ -62,14 +103,18 @@ export default function Calls() {
               <table className="w-full text-base">
                 <thead>
                   <tr className="text-[#A1A1AA] text-left border-b border-surface-border">
+                    <th className="p-4 font-medium">Department</th>
+                    <th className="p-4 font-medium">Agent</th>
                     <th className="p-4 font-medium">File</th>
-                        <th className="p-4 font-medium">Status</th>
-                        <th className="p-4 font-medium">Date</th>
-                        <th className="p-4 font-medium">Actions</th>
+                    <th className="p-4 font-medium">Duration</th>
+                    <th className="p-4 font-medium">Status</th>
+                    <th className="p-4 font-medium">Uploaded By</th>
+                    <th className="p-4 font-medium">Date</th>
+                    <th className="p-4 font-medium">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {calls.map((c, i) => (
+                  {filtered.map((c, i) => (
                     <motion.tr
                       key={c.id}
                       initial={{ opacity: 0 }}
@@ -77,10 +122,18 @@ export default function Calls() {
                       transition={{ delay: 0.03 * i }}
                       className="border-b border-surface-border hover:bg-surface-hover transition-colors"
                     >
+                      <td className="p-4 text-[#D4D4D8]">{c.department_name || '-'}</td>
+                      <td className="p-4 text-[#D4D4D8] font-medium">{c.agent_name || '-'}</td>
                       <td className="p-4">
                         <div className="flex items-center gap-2.5 text-[#D4D4D8]">
                           <FileAudio size={18} className="text-[#52525B]" />
                           <span className="font-medium">{c.filename}</span>
+                        </div>
+                      </td>
+                      <td className="p-4 text-[#A1A1AA]">
+                        <div className="flex items-center gap-2">
+                          <Clock size={16} className="text-[#52525B]" />
+                          {formatDuration(c.duration_seconds)}
                         </div>
                       </td>
                       <td className="p-4">
@@ -104,6 +157,12 @@ export default function Calls() {
                           }`} />
                           {c.processing_status || 'unknown'}
                         </span>
+                      </td>
+                      <td className="p-4 text-[#A1A1AA]">
+                        <div className="flex items-center gap-2">
+                          <User size={16} className="text-[#52525B]" />
+                          {c.uploaded_by ? 'Admin' : '-'}
+                        </div>
                       </td>
                       <td className="p-4 text-[#A1A1AA]">
                         <div className="flex items-center gap-2">

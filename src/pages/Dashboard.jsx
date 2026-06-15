@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
-  getAnalyticsSummary, getAnalyticsTrends, getAnalyticsCategories
+  getAnalyticsSummary, getAnalyticsTrends, getAnalyticsCategories,
+  getCalls, listDepartments
 } from '../services/api'
 import { useAuth } from '../context/AuthContext'
 import { CardSkeleton } from '../components/Skeleton'
 import PageTransition from '../components/PageTransition'
 import {
   Users, Phone, Star, AlertTriangle,
-  TrendingUp, ArrowUp, ArrowDown
+  TrendingUp, ArrowUp, ArrowDown, Building2
 } from 'lucide-react'
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer,
@@ -83,6 +84,7 @@ export default function Dashboard() {
   const [data, setData] = useState(null)
   const [trends, setTrends] = useState([])
   const [categories, setCategories] = useState({})
+  const [deptStats, setDeptStats] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -90,10 +92,26 @@ export default function Dashboard() {
       getAnalyticsSummary(),
       getAnalyticsTrends(),
       getAnalyticsCategories(),
-    ]).then(([s, t, c]) => {
+      getCalls(),
+      listDepartments(),
+    ]).then(([s, t, c, calls, depts]) => {
       setData(s)
       setTrends(t)
       setCategories(c)
+      const stats = depts.map(d => {
+        const deptCalls = calls.filter(cl => cl.department_id === d.id)
+        const completed = deptCalls.filter(cl => cl.processing_status === 'completed')
+        const scores = completed.map(cl => cl.overall_score ?? 0).filter(Boolean)
+        const avgScore = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0
+        return {
+          id: d.id,
+          name: d.name,
+          total_calls: deptCalls.length,
+          avg_score: avgScore,
+          completed: completed.length,
+        }
+      }).filter(d => d.total_calls > 0)
+      setDeptStats(stats)
     }).catch(() => {}).finally(() => setLoading(false))
   }, [])
 
@@ -224,6 +242,34 @@ export default function Dashboard() {
               </div>
             )}
           </motion.div>
+
+          {deptStats.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="sm:col-span-2 card p-6"
+            >
+              <h3 className="text-lg font-bold text-[#FAFAFA] mb-4 flex items-center gap-2">
+                <Building2 size={20} className="text-accent" /> Department Overview
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {deptStats.map(d => (
+                  <div key={d.id}
+                    onClick={() => navigate(`/departments/${d.id}`)}
+                    className="p-3 rounded-xl bg-surface-hover hover:bg-accent/5 transition-colors cursor-pointer"
+                  >
+                    <p className="text-sm font-medium text-[#A1A1AA]">{d.name}</p>
+                    <div className="flex items-baseline gap-2 mt-1">
+                      <span className="text-xl font-bold text-[#FAFAFA]">{d.avg_score}</span>
+                      <span className="text-xs text-[#52525B]">avg</span>
+                    </div>
+                    <p className="text-xs text-[#52525B]">{d.total_calls} calls</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
 
           {[
             { title: 'View Agents', desc: 'Manage agents and their evaluations', path: '/agents', delay: 0.35 },

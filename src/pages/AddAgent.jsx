@@ -1,17 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { createAgent } from '../services/api'
+import { createAgent, listDepartments } from '../services/api'
 import PageTransition from '../components/PageTransition'
 import { UserPlus, Loader2, ArrowLeft } from 'lucide-react'
 
 export default function AddAgent() {
   const navigate = useNavigate()
+  const [depts, setDepts] = useState([])
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [department, setDepartment] = useState('')
+  const [departmentId, setDepartmentId] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    listDepartments().then(setDepts).catch(() => {})
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -22,7 +27,8 @@ export default function AddAgent() {
     setLoading(true)
     setError('')
     try {
-      await createAgent(name.trim(), email.trim(), department.trim())
+      const dept = depts.find(d => d.id === departmentId)
+      await createAgent(name.trim(), email.trim(), departmentId, dept?.name || '')
       navigate('/agents')
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to create agent')
@@ -70,8 +76,11 @@ export default function AddAgent() {
             </div>
             <div>
               <label className="block text-base font-medium text-[#A1A1AA] mb-2">Department</label>
-              <input type="text" value={department} onChange={(e) => setDepartment(e.target.value)}
-                className="input-dark" placeholder="Sales, Support, etc." />
+              <select value={departmentId} onChange={(e) => setDepartmentId(e.target.value)}
+                className="input-dark w-full appearance-none cursor-pointer">
+                <option value="">Select department</option>
+                {depts.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
+              </select>
             </div>
             <button type="submit" disabled={loading}
               className="btn-primary w-full flex items-center justify-center gap-2 text-lg py-4"

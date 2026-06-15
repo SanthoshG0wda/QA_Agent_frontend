@@ -35,7 +35,7 @@ export default function AgentCard({ agent, index = 0 }) {
       </div>
       <div className="flex items-center gap-2 mb-4">
         <span className="text-sm px-3 py-1 rounded-full bg-accent/10 text-accent-light border border-accent/10">
-          {agent.department || 'General'}
+          {agent.department_name || agent.department || 'General'}
         </span>
       </div>
       <div className="flex items-center gap-6 text-base pt-4 border-t border-surface-border">
