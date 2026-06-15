@@ -64,8 +64,8 @@ export default function TranscriptViewer({ transcript, diarized, agentCustomer, 
   const hasNormalized = normalizedConversation && normalizedConversation.length > 0
 
   const tabs = [
-    { key: 'agent_customer', label: 'Agent / Customer', conversation: hasCorrected ? correctedConversation : hasNormalized ? normalizedConversation : null, text: !hasCorrected && !hasNormalized ? agentCustomer : null },
-    { key: 'diarized', label: 'Diarized', text: diarized },
+    // { key: 'agent_customer', label: 'Agent / Customer', conversation: hasCorrected ? correctedConversation : hasNormalized ? normalizedConversation : null, text: !hasCorrected && !hasNormalized ? agentCustomer : null },
+    // { key: 'diarized', label: 'Diarized', text: diarized },
     { key: 'plain', label: 'Transcript', text: transcript },
   ]
 
