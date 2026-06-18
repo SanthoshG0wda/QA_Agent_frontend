@@ -59,7 +59,7 @@ export default function NotificationBell() {
 
   return (
     <div ref={ref} className="relative">
-      <button onClick={() => { setOpen(!open); load() }} className="relative p-2 rounded-xl text-[#A1A1AA] hover:text-[#FAFAFA] hover:bg-surface-hover transition-all">
+      <button onClick={() => { setOpen(!open); load() }} className="relative p-2 rounded-xl text-secondary hover:text-primary hover:bg-surface-hover transition-all">
         <Bell size={20} />
         {count > 0 && (
           <span className="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">
@@ -76,7 +76,7 @@ export default function NotificationBell() {
             className="absolute right-0 top-full mt-2 w-80 rounded-2xl glass border border-surface-border shadow-2xl overflow-hidden z-50"
           >
             <div className="p-4 border-b border-surface-border flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-[#FAFAFA]">Notifications</h3>
+              <h3 className="text-sm font-semibold text-primary">Notifications</h3>
               {count > 0 && (
                 <button onClick={handleMarkAll} className="text-xs text-accent-light hover:text-accent flex items-center gap-1">
                   <CheckCheck size={14} /> Mark all read
@@ -85,7 +85,7 @@ export default function NotificationBell() {
             </div>
             <div className="max-h-80 overflow-y-auto">
               {notifs.length === 0 ? (
-                <p className="text-sm text-[#52525B] text-center py-8">No notifications</p>
+                <p className="text-sm text-muted text-center py-8">No notifications</p>
               ) : notifs.map((n) => (
                 <button
                   key={n.id}
@@ -94,9 +94,9 @@ export default function NotificationBell() {
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium text-[#FAFAFA] truncate">{n.title}</p>
-                      <p className="text-xs text-[#A1A1AA] mt-1 whitespace-pre-line">{n.message}</p>
-                      <p className="text-[10px] text-[#52525B] mt-1">
+                      <p className="text-sm font-medium text-primary truncate">{n.title}</p>
+                      <p className="text-xs text-secondary mt-1 whitespace-pre-line">{n.message}</p>
+                      <p className="text-[10px] text-muted mt-1">
                         {n.created_at ? formatRelative(n.created_at) : ''}
                       </p>
                     </div>

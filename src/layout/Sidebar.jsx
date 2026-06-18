@@ -35,7 +35,7 @@ export default function Sidebar() {
     <>
       <button
         onClick={() => setCollapsed(!collapsed)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-3 rounded-xl glass text-[#A1A1AA] hover:text-[#FAFAFA] transition-colors"
+        className="lg:hidden fixed top-4 left-4 z-50 p-3 rounded-xl glass text-secondary hover:text-primary transition-colors"
       >
         {collapsed ? <Menu size={22} /> : <X size={22} />}
       </button>
@@ -56,8 +56,8 @@ export default function Sidebar() {
               EP
             </div>
             <div>
-              <h2 className="text-lg font-bold text-[#FAFAFA] tracking-tight">EchoPeak</h2>
-              <p className="text-[10px] text-[#A1A1AA] tracking-widest uppercase font-medium">Smarter Call Quality Intelligence</p>
+              <h2 className="text-lg font-bold text-primary tracking-tight">EchoPeak</h2>
+              <p className="text-[10px] text-secondary tracking-widest uppercase font-medium">Smarter Call Quality Intelligence</p>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@ export default function Sidebar() {
                     <div className={`flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 group ${
                       isActive
                         ? 'bg-accent/10 text-accent-light border border-accent/20'
-                        : 'text-[#A1A1AA] hover:text-[#FAFAFA] hover:bg-surface-hover border border-transparent'
+                        : 'text-secondary hover:text-primary hover:bg-surface-hover border border-transparent'
                     }`}>
                       <Icon size={20} className="shrink-0" />
                       <span>{item.label}</span>
@@ -100,7 +100,7 @@ export default function Sidebar() {
           <div className="px-4 py-1">
             <button
               onClick={() => setDark(!dark)}
-              className="flex items-center gap-3 text-base font-medium text-[#A1A1AA] hover:text-[#FAFAFA] transition-all duration-200"
+              className="flex items-center gap-3 text-base font-medium text-secondary hover:text-primary transition-all duration-200"
             >
               {dark ? <Sun size={20} /> : <Moon size={20} />}
               {dark ? 'Light Mode' : 'Dark Mode'}
@@ -111,12 +111,12 @@ export default function Sidebar() {
               {user?.name?.charAt(0)?.toUpperCase() || 'U'}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-base font-semibold text-[#FAFAFA] truncate">{user?.name || 'User'}</p>
-              <p className="text-sm text-[#A1A1AA] capitalize truncate">{user?.role || 'user'}</p>
+              <p className="text-base font-semibold text-primary truncate">{user?.name || 'User'}</p>
+              <p className="text-sm text-secondary capitalize truncate">{user?.role || 'user'}</p>
             </div>
             <button
               onClick={logout}
-              className="text-[#A1A1AA] hover:text-[#EF4444] transition-colors p-1.5"
+              className="text-secondary hover:text-[#EF4444] transition-colors p-1.5"
               title="Logout"
             >
               <LogOut size={18} />

@@ -15,8 +15,8 @@ const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload?.length) {
     return (
       <div className="glass p-4 rounded-xl text-base shadow-glow">
-        <p className="text-[#A1A1AA] mb-1">{label}</p>
-        <p className="font-bold text-lg text-[#FAFAFA]">{payload[0].value}%</p>
+        <p className="text-secondary mb-1">{label}</p>
+        <p className="font-bold text-lg text-primary">{payload[0].value}%</p>
       </div>
     )
   }
@@ -57,10 +57,10 @@ export default function Analytics() {
     <PageTransition>
       <div className="space-y-8">
         <div>
-          <h1 className="text-3xl font-bold text-[#FAFAFA] flex items-center gap-3">
+          <h1 className="text-3xl font-bold text-primary flex items-center gap-3">
             <BarChart3 size={28} className="text-accent" /> Analytics
           </h1>
-          <p className="text-base text-[#A1A1AA] mt-2">Performance metrics and trends</p>
+          <p className="text-base text-secondary mt-2">Performance metrics and trends</p>
         </div>
 
         {loading ? (
@@ -74,11 +74,11 @@ export default function Analytics() {
               animate={{ opacity: 1, y: 0 }}
               className="card p-8"
             >
-              <h2 className="text-xl font-semibold text-[#FAFAFA] mb-6 flex items-center gap-2">
+              <h2 className="text-xl font-semibold text-primary mb-6 flex items-center gap-2">
                 <TrendingUp size={22} className="text-accent" /> Score Trend
               </h2>
               {trends.length === 0 ? (
-                <p className="text-base text-[#52525B] py-12 text-center">No data yet</p>
+                <p className="text-base text-muted py-12 text-center">No data yet</p>
               ) : (
                 <ResponsiveContainer width="100%" height={320}>
                   <LineChart data={trends}>
@@ -98,11 +98,11 @@ export default function Analytics() {
               transition={{ delay: 0.1 }}
               className="card p-8"
             >
-              <h2 className="text-xl font-semibold text-[#FAFAFA] mb-6 flex items-center gap-2">
+              <h2 className="text-xl font-semibold text-primary mb-6 flex items-center gap-2">
                 <Target size={22} className="text-accent" /> Category Performance
               </h2>
               {catData.length === 0 ? (
-                <p className="text-base text-[#52525B] py-12 text-center">No data yet</p>
+                <p className="text-base text-muted py-12 text-center">No data yet</p>
               ) : (
                 <ResponsiveContainer width="100%" height={320}>
                   <BarChart data={catData} layout="vertical" margin={{ left: 110 }}>
@@ -123,13 +123,13 @@ export default function Analytics() {
               transition={{ delay: 0.2 }}
               className="card p-8"
             >
-              <h2 className="text-xl font-semibold text-[#FAFAFA] mb-6 flex items-center gap-2">
+              <h2 className="text-xl font-semibold text-primary mb-6 flex items-center gap-2">
                 <AlertTriangle size={22} className="text-red-400" /> Critical Errors
               </h2>
               <p className="text-6xl font-bold text-red-400">{summary?.critical_errors ?? 0}</p>
-              <p className="text-base text-[#A1A1AA] mt-3">total critical errors detected across all evaluations</p>
+              <p className="text-base text-secondary mt-3">total critical errors detected across all evaluations</p>
               <div className="mt-8 p-5 rounded-2xl bg-red-500/5 border border-red-500/10">
-                <p className="text-sm text-[#A1A1AA]">
+                <p className="text-sm text-secondary">
                   Critical errors represent compliance breaches, policy violations, or severe customer service failures detected by AI analysis.
                 </p>
               </div>
@@ -141,7 +141,7 @@ export default function Analytics() {
               transition={{ delay: 0.25 }}
               className="card p-8"
             >
-              <h2 className="text-xl font-semibold text-[#FAFAFA] mb-6">Quick Stats</h2>
+              <h2 className="text-xl font-semibold text-primary mb-6">Quick Stats</h2>
               <div className="space-y-4">
                 {[
                   ['Total Evaluations', summary?.total_calls ?? 0, '#FAFAFA'],
@@ -150,7 +150,7 @@ export default function Analytics() {
                   ['Error Rate', summary?.total_calls ? `${((summary.critical_errors / summary.total_calls) * 100).toFixed(1)}%` : '0%', '#EF4444'],
                 ].map(([label, value, color]) => (
                   <div key={label} className="flex justify-between items-center p-4 rounded-xl bg-surface-hover">
-                    <span className="text-base text-[#A1A1AA]">{label}</span>
+                    <span className="text-base text-secondary">{label}</span>
                     <span className="text-lg font-bold" style={{ color }}>{value}</span>
                   </div>
                 ))}

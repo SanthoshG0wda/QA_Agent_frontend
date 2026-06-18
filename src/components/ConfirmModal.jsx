@@ -25,10 +25,10 @@ export default function ConfirmModal({ open, title, message, confirmLabel, onCon
                   <AlertTriangle size={20} className="text-red-400" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{title || 'Confirm'}</h3>
-                  <p className="text-sm text-[var(--text-secondary)] mt-1">{message}</p>
+                  <h3 className="text-lg font-semibold text-primary">{title || 'Confirm'}</h3>
+                  <p className="text-sm text-secondary mt-1">{message}</p>
                 </div>
-                <button onClick={onCancel} className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors p-0.5">
+                <button onClick={onCancel} className="text-muted hover:text-primary transition-colors p-0.5">
                   <X size={18} />
                 </button>
               </div>

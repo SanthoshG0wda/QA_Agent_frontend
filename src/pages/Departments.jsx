@@ -50,15 +50,15 @@ export default function Departments() {
       />
       <div className="space-y-8">
         <div>
-          <h1 className="text-3xl font-bold text-[#FAFAFA] flex items-center gap-3">
+          <h1 className="text-3xl font-bold text-primary flex items-center gap-3">
             <Building2 size={28} className="text-accent" /> Departments
           </h1>
-          <p className="text-base text-[#A1A1AA] mt-2">Manage organizational departments</p>
+          <p className="text-base text-secondary mt-2">Manage organizational departments</p>
         </div>
 
         <form onSubmit={handleCreate} className="card p-6 flex items-end gap-4">
           <div className="flex-1">
-            <label className="block text-sm font-medium text-[#A1A1AA] mb-2">New Department</label>
+            <label className="block text-sm font-medium text-secondary mb-2">New Department</label>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)}
               className="input-dark" placeholder="e.g. Sales, Support, Collections" />
           </div>
@@ -71,14 +71,14 @@ export default function Departments() {
         </form>
 
         {loading ? (
-          <div className="card p-8 text-center text-[#52525B]">Loading...</div>
+          <div className="card p-8 text-center text-muted">Loading...</div>
         ) : depts.length === 0 ? (
           <EmptyState title="No departments" description="Create your first department to organize agents." />
         ) : (
           <div className="card overflow-hidden">
             <table className="w-full text-base">
               <thead>
-                <tr className="text-[#A1A1AA] text-left border-b border-surface-border">
+                <tr className="text-secondary text-left border-b border-surface-border">
                   <th className="p-4 font-medium">Name</th>
                   <th className="p-4 font-medium">Created</th>
                   <th className="p-4 font-medium">Actions</th>
@@ -93,7 +93,7 @@ export default function Departments() {
                     className="border-b border-surface-border hover:bg-surface-hover transition-colors"
                   >
                     <td className="p-4 font-medium text-[#D4D4D8]">{d.name}</td>
-                    <td className="p-4 text-[#A1A1AA]">
+                    <td className="p-4 text-secondary">
                       {d.created_at ? new Date(d.created_at).toLocaleDateString() : '-'}
                     </td>
                     <td className="p-4">

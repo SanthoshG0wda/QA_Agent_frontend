@@ -42,17 +42,17 @@ export default function Login() {
               EP
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-[#FAFAFA] tracking-tight">EchoPeak</h1>
-              <p className="text-sm text-[#A1A1AA] tracking-widest uppercase font-medium">Smarter Call Quality Intelligence</p>
+              <h1 className="text-3xl font-bold text-primary tracking-tight">EchoPeak</h1>
+              <p className="text-sm text-secondary tracking-widest uppercase font-medium">Smarter Call Quality Intelligence</p>
             </div>
           </div>
           <div className="space-y-4">
-            <h2 className="text-4xl font-bold text-[#FAFAFA] leading-tight">Analyze Every Conversation.<br />Improve Every Interaction.</h2>
-            <p className="text-lg text-[#A1A1AA] leading-relaxed max-w-md">AI-powered call evaluation, speaker intelligence, agent coaching, and conversation analytics in one unified platform.</p>
+            <h2 className="text-4xl font-bold text-primary leading-tight">Analyze Every Conversation.<br />Improve Every Interaction.</h2>
+            <p className="text-lg text-secondary leading-relaxed max-w-md">AI-powered call evaluation, speaker intelligence, agent coaching, and conversation analytics in one unified platform.</p>
           </div>
           <div className="flex gap-4 pt-4">
             {['Deepgram', 'Groq', 'NVIDIA'].map(p => (
-              <span key={p} className="text-xs text-[#52525B] font-medium px-3 py-1.5 rounded-full border border-surface-border">{p}</span>
+              <span key={p} className="text-xs text-muted font-medium px-3 py-1.5 rounded-full border border-surface-border">{p}</span>
             ))}
           </div>
         </motion.div>
@@ -66,21 +66,21 @@ export default function Login() {
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent to-purple-600 flex items-center justify-center mx-auto mb-4 text-white font-extrabold text-lg tracking-tight">
                 EP
               </div>
-              <h1 className="text-2xl font-bold text-[#FAFAFA]">EchoPeak</h1>
-              <p className="text-sm text-[#A1A1AA] mt-1">Smarter Call Quality Intelligence</p>
+              <h1 className="text-2xl font-bold text-primary">EchoPeak</h1>
+              <p className="text-sm text-secondary mt-1">Smarter Call Quality Intelligence</p>
             </div>
             <div className="text-center mb-8">
-              <h2 className="text-xl font-bold text-[#FAFAFA]">Welcome back</h2>
-              <p className="text-base text-[#A1A1AA] mt-1">Sign in to your account</p>
+              <h2 className="text-xl font-bold text-primary">Welcome back</h2>
+              <p className="text-base text-secondary mt-1">Sign in to your account</p>
             </div>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-base font-medium text-[#A1A1AA] mb-2">Email</label>
+              <label className="block text-base font-medium text-secondary mb-2">Email</label>
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
                 className="input-dark text-lg py-3.5" placeholder="you@example.com" required />
             </div>
             <div>
-              <label className="block text-base font-medium text-[#A1A1AA] mb-2">Password</label>
+              <label className="block text-base font-medium text-secondary mb-2">Password</label>
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
                 className="input-dark text-lg py-3.5" placeholder="••••••••" required />
             </div>
@@ -97,7 +97,7 @@ export default function Login() {
               {loading ? <><Loader2 size={20} className="animate-spin" /> Signing in...</> : 'Sign In'}
             </button>
           </form>
-          <p className="text-center text-base text-[#52525B] mt-8">
+          <p className="text-center text-base text-muted mt-8">
             Don't have an account?{' '}
             <Link to="/register" className="text-accent-light hover:text-accent transition-colors font-medium">
               Register

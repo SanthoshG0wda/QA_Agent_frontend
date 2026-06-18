@@ -76,8 +76,8 @@ export default function AgentUpload() {
               {agent.name.charAt(0).toUpperCase()}
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-[#FAFAFA]">Upload Call for {agent.name}</h1>
-              <p className="text-base text-[#A1A1AA] flex items-center gap-2">
+              <h1 className="text-2xl font-bold text-primary">Upload Call for {agent.name}</h1>
+              <p className="text-base text-secondary flex items-center gap-2">
                 <Building2 size={16} /> {agent.department || 'General'}
               </p>
             </div>
@@ -106,18 +106,18 @@ export default function AgentUpload() {
               {file ? (
                 <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="space-y-3">
                   <FileAudio size={56} className="text-accent mx-auto" />
-                  <p className="text-lg text-[#FAFAFA] font-medium">{file.name}</p>
-                  <p className="text-sm text-[#A1A1AA]">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                  <p className="text-lg text-primary font-medium">{file.name}</p>
+                  <p className="text-sm text-secondary">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
                 </motion.div>
               ) : (
                 <div className="space-y-4">
                   <div className="w-20 h-20 rounded-2xl bg-surface-hover flex items-center justify-center mx-auto">
-                    <Upload size={36} className="text-[#52525B]" />
+                    <Upload size={36} className="text-muted" />
                   </div>
-                  <p className="text-lg text-[#A1A1AA] font-medium">
+                  <p className="text-lg text-secondary font-medium">
                     {dragOver ? 'Drop your file here' : 'Drop audio file here or click to browse'}
                   </p>
-                  <p className="text-sm text-[#52525B]">WAV, MP3, M4A, OGG</p>
+                  <p className="text-sm text-muted">WAV, MP3, M4A, OGG</p>
                 </div>
               )}
             </label>

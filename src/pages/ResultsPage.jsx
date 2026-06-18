@@ -91,13 +91,13 @@ export default function ResultsPage() {
               <div className="space-y-4">
                 <Clock size={48} className="text-yellow-400 animate-pulse mx-auto" />
                 <p className="text-yellow-400 text-lg font-medium">Processing call...</p>
-                <p className="text-[#A1A1AA]">Results will appear automatically when ready.</p>
+                <p className="text-secondary">Results will appear automatically when ready.</p>
               </div>
             ) : evaluation.processing_status === 'failed' ? (
               <div className="space-y-4">
                 <XCircle size={48} className="text-red-400 mx-auto" />
                 <p className="text-red-400 text-lg font-medium">Processing failed</p>
-                <p className="text-[#A1A1AA]">Please try uploading the call again.</p>
+                <p className="text-secondary">Please try uploading the call again.</p>
               </div>
             ) : null}
           </motion.div>
@@ -108,8 +108,8 @@ export default function ResultsPage() {
                 EP
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-[#FAFAFA] tracking-tight">EchoPeak Analysis Report</h2>
-                <p className="text-sm text-[#A1A1AA]">AI-Powered Call Quality Assessment</p>
+                <h2 className="text-2xl font-bold text-primary tracking-tight">EchoPeak Analysis Report</h2>
+                <p className="text-sm text-secondary">AI-Powered Call Quality Assessment</p>
               </div>
             </div>
             {evaluation.agent_name && (
@@ -122,10 +122,10 @@ export default function ResultsPage() {
                   {evaluation.agent_name.charAt(0).toUpperCase()}
                 </div>
                 <div>
-                  <p className="text-lg font-semibold text-[#FAFAFA] flex items-center gap-2">
+                  <p className="text-lg font-semibold text-primary flex items-center gap-2">
                     <User size={18} className="text-accent" /> {evaluation.agent_name}
                   </p>
-                  <p className="text-sm text-[#A1A1AA] flex items-center gap-1">
+                  <p className="text-sm text-secondary flex items-center gap-1">
                     <Building2 size={14} /> {evaluation.agent_department || 'Agent'}
                   </p>
                 </div>

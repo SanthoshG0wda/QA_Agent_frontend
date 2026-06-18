@@ -17,8 +17,8 @@ const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload?.length) {
     return (
       <div className="glass p-4 rounded-xl text-base shadow-glow">
-        <p className="text-[#A1A1AA] mb-1">{label}</p>
-        <p className="font-bold text-lg text-[#FAFAFA]">{payload[0].value}%</p>
+        <p className="text-secondary mb-1">{label}</p>
+        <p className="font-bold text-lg text-primary">{payload[0].value}%</p>
       </div>
     )
   }
@@ -89,8 +89,8 @@ export default function AgentDetails() {
                 {agent.name.charAt(0).toUpperCase()}
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-[#FAFAFA]">{agent.name}</h1>
-                <div className="flex items-center gap-4 mt-2 text-sm text-[#A1A1AA]">
+                <h1 className="text-3xl font-bold text-primary">{agent.name}</h1>
+                <div className="flex items-center gap-4 mt-2 text-sm text-secondary">
                   <span className="flex items-center gap-1.5"><Mail size={16} /> {agent.email}</span>
                   <span className="flex items-center gap-1.5"><Building2 size={16} /> {agent.department_name || agent.department || 'General'}</span>
                 </div>
@@ -120,9 +120,9 @@ export default function AgentDetails() {
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${stat.color}`}>
                     <Icon size={24} />
                   </div>
-                  <p className="text-base text-[#A1A1AA]">{stat.label}</p>
+                  <p className="text-base text-secondary">{stat.label}</p>
                 </div>
-                <p className="text-3xl font-bold text-[#FAFAFA]">{stat.value}</p>
+                <p className="text-3xl font-bold text-primary">{stat.value}</p>
               </motion.div>
             )
           })}
@@ -135,7 +135,7 @@ export default function AgentDetails() {
             transition={{ delay: 0.15 }}
             className="card p-6"
           >
-            <h2 className="text-lg font-semibold text-[#FAFAFA] mb-5 flex items-center gap-2">
+            <h2 className="text-lg font-semibold text-primary mb-5 flex items-center gap-2">
               <TrendingUp size={20} className="text-accent" /> Performance Trend
             </h2>
             <ResponsiveContainer width="100%" height={250}>
@@ -155,7 +155,7 @@ export default function AgentDetails() {
 
         <div className="card">
           <div className="p-5 border-b border-surface-border">
-            <h2 className="text-xl font-bold text-[#FAFAFA]">Evaluation History</h2>
+            <h2 className="text-xl font-bold text-primary">Evaluation History</h2>
           </div>
           {evaluations.length === 0 ? (
             <EmptyState
@@ -168,7 +168,7 @@ export default function AgentDetails() {
             <div className="overflow-x-auto">
               <table className="w-full text-base">
                 <thead>
-                  <tr className="text-[#A1A1AA] text-left border-b border-surface-border">
+                  <tr className="text-secondary text-left border-b border-surface-border">
                     <th className="p-4 font-medium">Date</th>
                     <th className="p-4 font-medium">File</th>
                     <th className="p-4 font-medium">Score</th>
@@ -187,7 +187,7 @@ export default function AgentDetails() {
                     >
                       <td className="p-4 text-[#D4D4D8]">
                         <div className="flex items-center gap-2">
-                          <Calendar size={16} className="text-[#52525B]" />
+                          <Calendar size={16} className="text-muted" />
                           {ev.created_at ? new Date(ev.created_at).toLocaleDateString() : '-'}
                         </div>
                       </td>

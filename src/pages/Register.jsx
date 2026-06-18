@@ -42,26 +42,26 @@ export default function Register() {
             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent to-purple-600 flex items-center justify-center mx-auto mb-4 text-white font-extrabold text-lg tracking-tight">
               EP
             </div>
-            <h1 className="text-2xl font-bold text-[#FAFAFA]">EchoPeak</h1>
-            <p className="text-sm text-[#A1A1AA] mt-1">Smarter Call Quality Intelligence</p>
+            <h1 className="text-2xl font-bold text-primary">EchoPeak</h1>
+            <p className="text-sm text-secondary mt-1">Smarter Call Quality Intelligence</p>
             <div className="mt-6 pt-6 border-t border-surface-border">
-              <h2 className="text-xl font-bold text-[#FAFAFA]">Create account</h2>
-              <p className="text-base text-[#A1A1AA] mt-1">Get started with EchoPeak</p>
+              <h2 className="text-xl font-bold text-primary">Create account</h2>
+              <p className="text-base text-secondary mt-1">Get started with EchoPeak</p>
             </div>
           </div>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-base font-medium text-[#A1A1AA] mb-2">Name</label>
+              <label className="block text-base font-medium text-secondary mb-2">Name</label>
               <input type="text" value={name} onChange={(e) => setName(e.target.value)}
                 className="input-dark text-lg py-3.5" placeholder="Your name" required />
             </div>
             <div>
-              <label className="block text-base font-medium text-[#A1A1AA] mb-2">Email</label>
+              <label className="block text-base font-medium text-secondary mb-2">Email</label>
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
                 className="input-dark text-lg py-3.5" placeholder="you@example.com" required />
             </div>
             <div>
-              <label className="block text-base font-medium text-[#A1A1AA] mb-2">Password</label>
+              <label className="block text-base font-medium text-secondary mb-2">Password</label>
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
                 className="input-dark text-lg py-3.5" placeholder="••••••••" required />
             </div>
@@ -78,7 +78,7 @@ export default function Register() {
               {loading ? <><Loader2 size={20} className="animate-spin" /> Creating...</> : 'Create Account'}
             </button>
           </form>
-          <p className="text-center text-base text-[#52525B] mt-8">
+          <p className="text-center text-base text-muted mt-8">
             Already have an account?{' '}
             <Link to="/login" className="text-accent-light hover:text-accent transition-colors font-medium">
               Sign In

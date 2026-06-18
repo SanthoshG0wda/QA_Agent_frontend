@@ -82,20 +82,20 @@ export default function UploadForm({ onEvaluate, loading, error }) {
 
   return (
     <div className="card p-8">
-      <h2 className="text-xl font-bold text-[#FAFAFA] mb-2">Upload Call Recording</h2>
-      <p className="text-base text-[#A1A1AA] mb-8">Upload a call recording and let EchoPeak analyze it for quality intelligence</p>
+      <h2 className="text-xl font-bold text-primary mb-2">Upload Call Recording</h2>
+      <p className="text-base text-secondary mb-8">Upload a call recording and let EchoPeak analyze it for quality intelligence</p>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div ref={deptRef} className="relative">
-            <label className="block text-sm font-medium text-[#A1A1AA] mb-2">Department *</label>
+            <label className="block text-sm font-medium text-secondary mb-2">Department *</label>
             <div
               onClick={() => setShowDeptDropdown(!showDeptDropdown)}
               className="input-dark flex items-center justify-between cursor-pointer"
             >
-              <span className={selectedDept ? 'text-[#FAFAFA]' : 'text-[#52525B]'}>
+              <span className={selectedDept ? 'text-primary' : 'text-muted'}>
                 {selectedDept ? selectedDept.name : 'Select Department'}
               </span>
-              <ChevronDown size={16} className="text-[#52525B]" />
+              <ChevronDown size={16} className="text-muted" />
             </div>
             {errors.department && (
               <p className="text-xs text-red-400 mt-1 flex items-center gap-1">
@@ -112,7 +112,7 @@ export default function UploadForm({ onEvaluate, loading, error }) {
                   />
                 </div>
                 {filteredDepts.length === 0 ? (
-                  <p className="text-sm text-[#52525B] text-center py-4">No departments found</p>
+                  <p className="text-sm text-muted text-center py-4">No departments found</p>
                 ) : filteredDepts.map(d => (
                   <button type="button" key={d.id}
                     onClick={() => { setDepartmentId(d.id); setDeptSearch(''); setShowDeptDropdown(false); setTouched(t => ({...t, department: true})) }}
@@ -127,15 +127,15 @@ export default function UploadForm({ onEvaluate, loading, error }) {
           </div>
 
           <div ref={agentRef} className="relative">
-            <label className="block text-sm font-medium text-[#A1A1AA] mb-2">Agent *</label>
+            <label className="block text-sm font-medium text-secondary mb-2">Agent *</label>
             <div
               onClick={() => { if (departmentId) setShowAgentDropdown(!showAgentDropdown) }}
               className="input-dark flex items-center justify-between cursor-pointer"
             >
-              <span className={selectedAgent ? 'text-[#FAFAFA]' : 'text-[#52525B]'}>
+              <span className={selectedAgent ? 'text-primary' : 'text-muted'}>
                 {selectedAgent ? selectedAgent.name : (departmentId ? 'Search or Select Agent' : 'Select department first')}
               </span>
-              <Search size={16} className="text-[#52525B]" />
+              <Search size={16} className="text-muted" />
             </div>
             {errors.agent && (
               <p className="text-xs text-red-400 mt-1 flex items-center gap-1">
@@ -152,7 +152,7 @@ export default function UploadForm({ onEvaluate, loading, error }) {
                   />
                 </div>
                 {filteredAgents.length === 0 ? (
-                  <p className="text-sm text-[#52525B] text-center py-4">No agents found</p>
+                  <p className="text-sm text-muted text-center py-4">No agents found</p>
                 ) : filteredAgents.map(a => (
                   <button type="button" key={a.id}
                     onClick={() => { setAgentId(a.id); setAgentSearch(''); setShowAgentDropdown(false); setTouched(t => ({...t, agent: true})) }}
@@ -184,8 +184,8 @@ export default function UploadForm({ onEvaluate, loading, error }) {
           {file ? (
             <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="space-y-3">
               <FileAudio size={48} className="text-accent mx-auto" />
-              <p className="text-base text-[#FAFAFA] font-medium">{file.name}</p>
-              <p className="text-sm text-[#A1A1AA]">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+              <p className="text-base text-primary font-medium">{file.name}</p>
+              <p className="text-sm text-secondary">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
               <button type="button" onClick={(e) => { e.stopPropagation(); setFile(null); setTouched(t => ({...t, file: false})) }}
                 className="btn-ghost text-red-400 hover:text-red-300 mx-auto flex items-center gap-1.5"
               >
@@ -195,12 +195,12 @@ export default function UploadForm({ onEvaluate, loading, error }) {
           ) : (
             <div className="space-y-4">
               <div className="w-16 h-16 rounded-2xl bg-surface-hover flex items-center justify-center mx-auto">
-                <Upload size={28} className="text-[#52525B]" />
+                <Upload size={28} className="text-muted" />
               </div>
-              <p className="text-base text-[#A1A1AA] font-medium">
+              <p className="text-base text-secondary font-medium">
                 {dragOver ? 'Drop your file here' : 'Drop audio file here or click to browse'}
               </p>
-              <p className="text-sm text-[#52525B]">WAV, MP3, M4A — up to 100 MB</p>
+              <p className="text-sm text-muted">WAV, MP3, M4A — up to 100 MB</p>
             </div>
           )}
         </div>
@@ -211,7 +211,7 @@ export default function UploadForm({ onEvaluate, loading, error }) {
         )}
 
         <div>
-          <label className="block text-sm font-medium text-[#A1A1AA] mb-2">Notes (Optional)</label>
+          <label className="block text-sm font-medium text-secondary mb-2">Notes (Optional)</label>
           <textarea value={notes} onChange={(e) => setNotes(e.target.value)}
             className="input-dark w-full" rows={2} placeholder="Customer complaint call, High priority review, Training call..."
           />
@@ -226,20 +226,20 @@ export default function UploadForm({ onEvaluate, loading, error }) {
               className="rounded-2xl bg-surface-hover border border-surface-border overflow-hidden"
             >
               <div className="p-4 border-b border-surface-border">
-                <p className="text-xs font-semibold text-[#A1A1AA] uppercase tracking-wider">Upload Summary</p>
+                <p className="text-xs font-semibold text-secondary uppercase tracking-wider">Upload Summary</p>
               </div>
               <div className="p-4 space-y-2">
                 <div className="flex items-center gap-3 text-sm">
-                  <span className="text-[#52525B] w-24">Department:</span>
-                  <span className="text-[#FAFAFA] font-medium">{selectedDept?.name}</span>
+                  <span className="text-muted w-24">Department:</span>
+                  <span className="text-primary font-medium">{selectedDept?.name}</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <span className="text-[#52525B] w-24">Agent:</span>
-                  <span className="text-[#FAFAFA] font-medium">{selectedAgent?.name}</span>
+                  <span className="text-muted w-24">Agent:</span>
+                  <span className="text-primary font-medium">{selectedAgent?.name}</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <span className="text-[#52525B] w-24">File:</span>
-                  <span className="text-[#FAFAFA] font-medium truncate">{file?.name}</span>
+                  <span className="text-muted w-24">File:</span>
+                  <span className="text-primary font-medium truncate">{file?.name}</span>
                 </div>
               </div>
             </motion.div>

@@ -11,6 +11,9 @@ export default {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
+        primary: 'var(--text-primary)',
+        secondary: 'var(--text-secondary)',
+        muted: 'var(--text-muted)',
         surface: {
           DEFAULT: 'var(--surface-bg)',
           card: 'var(--surface-card)',

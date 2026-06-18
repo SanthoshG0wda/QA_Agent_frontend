@@ -61,15 +61,15 @@ export default function Calls() {
       />
       <div className="space-y-8">
         <div>
-          <h1 className="text-3xl font-bold text-[#FAFAFA] flex items-center gap-3">
+          <h1 className="text-3xl font-bold text-primary flex items-center gap-3">
             <Phone size={28} className="text-accent" /> Calls
           </h1>
-          <p className="text-base text-[#A1A1AA] mt-2">View all uploaded call recordings</p>
+          <p className="text-base text-secondary mt-2">View all uploaded call recordings</p>
         </div>
 
         <div className="flex flex-wrap gap-4">
           <div className="relative flex-1 min-w-[200px]">
-            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#52525B]" />
+            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" />
             <input type="text" placeholder="Search agent or file..." value={search}
               onChange={(e) => setSearch(e.target.value)} className="input-dark pl-11 py-3 w-full" />
           </div>
@@ -102,7 +102,7 @@ export default function Calls() {
             <div className="overflow-x-auto">
               <table className="w-full text-base">
                 <thead>
-                  <tr className="text-[#A1A1AA] text-left border-b border-surface-border">
+                  <tr className="text-secondary text-left border-b border-surface-border">
                     <th className="p-4 font-medium">Department</th>
                     <th className="p-4 font-medium">Agent</th>
                     <th className="p-4 font-medium">File</th>
@@ -126,13 +126,13 @@ export default function Calls() {
                       <td className="p-4 text-[#D4D4D8] font-medium">{c.agent_name || '-'}</td>
                       <td className="p-4">
                         <div className="flex items-center gap-2.5 text-[#D4D4D8]">
-                          <FileAudio size={18} className="text-[#52525B]" />
+                          <FileAudio size={18} className="text-muted" />
                           <span className="font-medium">{c.filename}</span>
                         </div>
                       </td>
-                      <td className="p-4 text-[#A1A1AA]">
+                      <td className="p-4 text-secondary">
                         <div className="flex items-center gap-2">
-                          <Clock size={16} className="text-[#52525B]" />
+                          <Clock size={16} className="text-muted" />
                           {formatDuration(c.duration_seconds)}
                         </div>
                       </td>
@@ -144,7 +144,7 @@ export default function Calls() {
                               ? 'bg-yellow-500/10 text-yellow-400'
                               : c.processing_status === 'failed'
                                 ? 'bg-red-500/10 text-red-400'
-                                : 'bg-[#52525B]/10 text-[#A1A1AA]'
+                                : 'bg-[#52525B]/10 text-secondary'
                         }`}>
                           <span className={`w-1.5 h-1.5 rounded-full ${
                             c.processing_status === 'completed'
@@ -158,15 +158,15 @@ export default function Calls() {
                           {c.processing_status || 'unknown'}
                         </span>
                       </td>
-                      <td className="p-4 text-[#A1A1AA]">
+                      <td className="p-4 text-secondary">
                         <div className="flex items-center gap-2">
-                          <User size={16} className="text-[#52525B]" />
+                          <User size={16} className="text-muted" />
                           {c.uploaded_by ? 'Admin' : '-'}
                         </div>
                       </td>
-                      <td className="p-4 text-[#A1A1AA]">
+                      <td className="p-4 text-secondary">
                         <div className="flex items-center gap-2">
-                          <Calendar size={16} className="text-[#52525B]" />
+                          <Calendar size={16} className="text-muted" />
                           {new Date(c.created_at).toLocaleDateString()}
                         </div>
                       </td>

@@ -18,7 +18,7 @@ export default function EvaluationList() {
 
   return (
     <div className="card p-6">
-      <h2 className="text-xl font-bold text-[#FAFAFA] mb-5 flex items-center gap-2">
+      <h2 className="text-xl font-bold text-primary mb-5 flex items-center gap-2">
         <Star size={22} className="text-accent" /> Recent Evaluations
       </h2>
       <div className="space-y-3">
@@ -40,8 +40,8 @@ export default function EvaluationList() {
                 {ev.overall_score}
               </div>
               <div>
-                <p className="text-base font-semibold text-[#FAFAFA]">Score: {ev.overall_score}/100</p>
-                <p className="text-sm text-[#52525B]">{new Date(ev.created_at).toLocaleString()}</p>
+                <p className="text-base font-semibold text-primary">Score: {ev.overall_score}/100</p>
+                <p className="text-sm text-muted">{new Date(ev.created_at).toLocaleString()}</p>
               </div>
             </div>
             <span className={`text-sm ${ev.critical_error ? 'badge-red' : 'badge-green'}`}>

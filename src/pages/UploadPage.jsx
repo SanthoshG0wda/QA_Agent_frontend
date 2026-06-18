@@ -34,10 +34,10 @@ export default function UploadPage() {
     <PageTransition>
       <div className="max-w-3xl mx-auto space-y-8">
         <div>
-          <h1 className="text-3xl font-bold text-[#FAFAFA] flex items-center gap-3">
+          <h1 className="text-3xl font-bold text-primary flex items-center gap-3">
             <Upload size={28} className="text-accent" /> Upload Call
           </h1>
-          <p className="text-base text-[#A1A1AA] mt-2">Upload a call recording for EchoPeak AI analysis</p>
+          <p className="text-base text-secondary mt-2">Upload a call recording for EchoPeak AI analysis</p>
         </div>
 
         <AnimatePresence mode="wait">
@@ -53,20 +53,20 @@ export default function UploadPage() {
                 <CheckCircle2 size={48} className="text-green-400" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-[#FAFAFA]">Call uploaded successfully</h2>
-                <p className="text-[#A1A1AA] mt-2">
+                <h2 className="text-2xl font-bold text-primary">Call uploaded successfully</h2>
+                <p className="text-secondary mt-2">
                   Evaluation started in background. You can leave this page and continue uploading additional calls.
                 </p>
               </div>
               <div className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-surface-hover text-left">
                 <FileText size={20} className="text-accent" />
                 <div>
-                  <p className="text-sm text-[#A1A1AA]">Job ID</p>
-                  <p className="text-base font-semibold text-[#FAFAFA]">{lastResult.job_id}</p>
+                  <p className="text-sm text-secondary">Job ID</p>
+                  <p className="text-base font-semibold text-primary">{lastResult.job_id}</p>
                 </div>
                 <div className="w-px h-8 bg-surface-border" />
                 <div>
-                  <p className="text-sm text-[#A1A1AA]">Status</p>
+                  <p className="text-sm text-secondary">Status</p>
                   <div className="flex items-center gap-1.5">
                     <Clock size={14} className="text-yellow-400" />
                     <span className="text-base font-semibold text-yellow-400 capitalize">{lastResult.status}</span>
@@ -82,7 +82,7 @@ export default function UploadPage() {
                 </button>
                 <button
                   onClick={handleUploadAnother}
-                  className="btn-ghost text-[#A1A1AA] hover:text-[#FAFAFA] flex items-center gap-2"
+                  className="btn-ghost text-secondary hover:text-primary flex items-center gap-2"
                 >
                   <RefreshCw size={18} /> Upload Another Call
                 </button>

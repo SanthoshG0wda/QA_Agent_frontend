@@ -51,10 +51,10 @@ export default function Users() {
       <div className="space-y-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-[#FAFAFA] flex items-center gap-3">
+            <h1 className="text-3xl font-bold text-primary flex items-center gap-3">
               <Shield size={28} className="text-accent" /> Users
             </h1>
-            <p className="text-base text-[#A1A1AA] mt-2">Manage system users and roles</p>
+            <p className="text-base text-secondary mt-2">Manage system users and roles</p>
           </div>
           <button onClick={() => setShowForm(!showForm)} className="btn-primary flex items-center gap-2">
             <Plus size={20} /> Add User
@@ -69,7 +69,7 @@ export default function Users() {
             className="card p-6 space-y-5"
           >
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-lg font-bold text-[var(--text-primary)]">New User</h3>
+              <h3 className="text-lg font-bold text-primary">New User</h3>
               <button type="button" onClick={() => setShowForm(false)} className="btn-ghost p-1.5">
                 <X size={18} />
               </button>
@@ -100,7 +100,7 @@ export default function Users() {
             <div className="overflow-x-auto">
               <table className="w-full text-base">
                 <thead>
-                  <tr className="text-[#A1A1AA] text-left border-b border-surface-border">
+                  <tr className="text-secondary text-left border-b border-surface-border">
                     <th className="p-4 font-medium">Name</th>
                     <th className="p-4 font-medium">Email</th>
                     <th className="p-4 font-medium">Role</th>
@@ -118,12 +118,12 @@ export default function Users() {
                       className="border-b border-surface-border hover:bg-surface-hover transition-colors"
                     >
                       <td className="p-4">
-                        <div className="flex items-center gap-2.5 text-[var(--text-primary)]">
-                          <User size={18} className="text-[#52525B]" />
+                        <div className="flex items-center gap-2.5 text-primary">
+                          <User size={18} className="text-muted" />
                           <span className="font-medium">{u.name}</span>
                         </div>
                       </td>
-                      <td className="p-4 text-[#A1A1AA]">{u.email}</td>
+                      <td className="p-4 text-secondary">{u.email}</td>
                       <td className="p-4">
                         <span className={`text-sm px-3 py-1 rounded-full border font-medium ${
                           u.role === 'admin'
@@ -135,7 +135,7 @@ export default function Users() {
                           {u.role}
                         </span>
                       </td>
-                      <td className="p-4 text-[#A1A1AA]">
+                      <td className="p-4 text-secondary">
                         <div className="flex items-center gap-2">
                           <Calendar size={16} />
                           {new Date(u.created_at).toLocaleDateString()}

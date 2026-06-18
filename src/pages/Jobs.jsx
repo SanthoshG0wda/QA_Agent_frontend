@@ -40,7 +40,7 @@ export default function Jobs() {
       case 'completed': return <CheckCircle2 size={18} className="text-green-400" />
       case 'processing': return <Loader2 size={18} className="text-yellow-400 animate-spin" />
       case 'failed': return <XCircle size={18} className="text-red-400" />
-      default: return <Clock size={18} className="text-[#52525B]" />
+      default: return <Clock size={18} className="text-muted" />
     }
   }
 
@@ -48,7 +48,7 @@ export default function Jobs() {
     <PageTransition>
       <div className="space-y-8">
         <div>
-          <h1 className="text-3xl font-bold text-[#FAFAFA] flex items-center gap-3">
+          <h1 className="text-3xl font-bold text-primary flex items-center gap-3">
             <Briefcase size={28} className="text-accent" /> Jobs
             {hasPending && (
               <span className="inline-flex items-center gap-1.5 text-xs font-medium text-green-400 bg-green-500/10 px-2.5 py-1 rounded-full">
@@ -57,7 +57,7 @@ export default function Jobs() {
               </span>
             )}
           </h1>
-          <p className="text-base text-[#A1A1AA] mt-2">Track evaluation job statuses in real time</p>
+          <p className="text-base text-secondary mt-2">Track evaluation job statuses in real time</p>
         </div>
 
         {loading ? (
@@ -74,7 +74,7 @@ export default function Jobs() {
             <div className="overflow-x-auto">
               <table className="w-full text-base">
                 <thead>
-                  <tr className="text-[#A1A1AA] text-left border-b border-surface-border">
+                  <tr className="text-secondary text-left border-b border-surface-border">
                     <th className="p-4 font-medium">Job ID</th>
                     <th className="p-4 font-medium">Agent</th>
                     <th className="p-4 font-medium">Department</th>
@@ -106,7 +106,7 @@ export default function Jobs() {
                               ? 'bg-yellow-500/10 text-yellow-400'
                               : job.status === 'failed'
                                 ? 'bg-red-500/10 text-red-400'
-                                : 'bg-[#52525B]/10 text-[#A1A1AA]'
+                                : 'bg-[#52525B]/10 text-secondary'
                         }`}>
                           {statusIcon(job.status)}
                           {job.status || 'pending'}
@@ -119,10 +119,10 @@ export default function Jobs() {
                               job.progress === 100 ? 'bg-green-400' : 'bg-yellow-400'
                             }`} style={{ width: `${job.progress}%` }} />
                           </div>
-                          <span className="text-xs text-[#A1A1AA]">{job.progress}%</span>
+                          <span className="text-xs text-secondary">{job.progress}%</span>
                         </div>
                       </td>
-                      <td className="p-4 text-[#A1A1AA] text-sm">
+                      <td className="p-4 text-secondary text-sm">
                         {job.created_at ? new Date(job.created_at).toLocaleDateString() : '-'}
                       </td>
                       <td className="p-4">

@@ -16,8 +16,8 @@ export default function Profile() {
     <PageTransition>
       <div className="max-w-2xl mx-auto space-y-8">
         <div>
-          <h1 className="text-3xl font-bold text-[#FAFAFA]">Profile</h1>
-          <p className="text-base text-[#A1A1AA] mt-2">Your account information</p>
+          <h1 className="text-3xl font-bold text-primary">Profile</h1>
+          <p className="text-base text-secondary mt-2">Your account information</p>
         </div>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -28,8 +28,8 @@ export default function Profile() {
             <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-accent to-purple-600 flex items-center justify-center text-white font-bold text-4xl mx-auto mb-4">
               {user?.name?.charAt(0)?.toUpperCase() || 'U'}
             </div>
-            <h2 className="text-2xl font-bold text-[#FAFAFA]">{user?.name}</h2>
-            <p className="text-base text-[#A1A1AA] capitalize mt-1">{user?.role}</p>
+            <h2 className="text-2xl font-bold text-primary">{user?.name}</h2>
+            <p className="text-base text-secondary capitalize mt-1">{user?.role}</p>
           </div>
           <div className="p-8 space-y-5">
             {details.map((d) => {
@@ -40,8 +40,8 @@ export default function Profile() {
                     <Icon size={20} className="text-accent-light" />
                   </div>
                   <div>
-                    <p className="text-sm text-[#A1A1AA]">{d.label}</p>
-                    <p className="text-base font-semibold text-[#FAFAFA] capitalize">{d.value}</p>
+                    <p className="text-sm text-secondary">{d.label}</p>
+                    <p className="text-base font-semibold text-primary capitalize">{d.value}</p>
                   </div>
                 </div>
               )

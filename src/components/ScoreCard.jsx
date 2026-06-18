@@ -33,8 +33,8 @@ function RadialScore({ score }) {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-5xl font-bold text-[#FAFAFA]">{score}</span>
-        <span className="text-lg text-[#A1A1AA]">/ 100</span>
+        <span className="text-5xl font-bold text-primary">{score}</span>
+        <span className="text-lg text-secondary">/ 100</span>
       </div>
     </div>
   )
@@ -50,7 +50,7 @@ export default function ScoreCard({ evaluation }) {
       className="space-y-6"
     >
       <div className="card p-10 text-center">
-        <p className="text-base text-[#A1A1AA] uppercase tracking-widest mb-5">Overall Score</p>
+        <p className="text-base text-secondary uppercase tracking-widest mb-5">Overall Score</p>
         <RadialScore score={pct} />
       </div>
 
@@ -68,8 +68,8 @@ export default function ScoreCard({ evaluation }) {
               className="card p-5"
             >
               <div className="flex justify-between items-center mb-3">
-                <span className="text-base text-[#A1A1AA]">{label}</span>
-                <span className="text-base font-semibold text-[#FAFAFA]">{val}/{max}</span>
+                <span className="text-base text-secondary">{label}</span>
+                <span className="text-base font-semibold text-primary">{val}/{max}</span>
               </div>
               <div className="w-full bg-[#1f1f23] rounded-full h-3 overflow-hidden">
                 <motion.div
@@ -105,7 +105,7 @@ export default function ScoreCard({ evaluation }) {
               ))}
             </ul>
           ) : (
-            <p className="text-base text-[#52525B]">None identified</p>
+            <p className="text-base text-muted">None identified</p>
           )}
         </div>
 
@@ -129,13 +129,13 @@ export default function ScoreCard({ evaluation }) {
               ))}
             </ul>
           ) : (
-            <p className="text-base text-[#52525B]">None identified</p>
+            <p className="text-base text-muted">None identified</p>
           )}
         </div>
       </div>
 
       <div className={`card p-6 ${evaluation.critical_error ? 'border-red-500/20' : 'border-green-500/10'}`}>
-        <h3 className="font-semibold mb-4 flex items-center gap-2 text-lg text-[#FAFAFA]">
+        <h3 className="font-semibold mb-4 flex items-center gap-2 text-lg text-primary">
           <AlertTriangle size={20} className={evaluation.critical_error ? 'text-red-400' : 'text-green-400'} />
           Critical Errors
         </h3>

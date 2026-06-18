@@ -28,8 +28,8 @@ function Greeting() {
   const greet = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening'
   return (
     <div>
-      <h1 className="text-3xl font-bold text-[#FAFAFA]">{greet}, {user?.name || 'User'} 👋</h1>
-      <p className="text-base text-[#A1A1AA] mt-2">
+      <h1 className="text-3xl font-bold text-primary">{greet}, {user?.name || 'User'} 👋</h1>
+      <p className="text-base text-secondary mt-2">
         {time.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
       </p>
     </div>
@@ -45,12 +45,12 @@ function KpiCard({ label, value, icon: Icon, color, trend, trendLabel, delay = 0
       className="card p-6 card-hover"
     >
       <div className="flex items-start justify-between mb-4">
-        <p className="text-sm text-[#A1A1AA] font-medium">{label}</p>
+        <p className="text-sm text-secondary font-medium">{label}</p>
         <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}>
           <Icon size={24} />
         </div>
       </div>
-      <p className="text-4xl font-bold text-[#FAFAFA]">{value}</p>
+      <p className="text-4xl font-bold text-primary">{value}</p>
       {trend !== undefined && (
         <div className="flex items-center gap-1.5 mt-3">
           {trend > 0 ? (
@@ -71,8 +71,8 @@ const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload?.length) {
     return (
       <div className="glass p-4 rounded-xl text-base shadow-glow">
-        <p className="text-[#A1A1AA] mb-1">{label}</p>
-        <p className="font-bold text-lg text-[#FAFAFA]">{payload[0].value}%</p>
+        <p className="text-secondary mb-1">{label}</p>
+        <p className="font-bold text-lg text-primary">{payload[0].value}%</p>
       </div>
     )
   }
@@ -167,11 +167,11 @@ export default function Dashboard() {
             transition={{ delay: 0.2 }}
             className="card p-6"
           >
-            <h2 className="text-lg font-semibold text-[#FAFAFA] mb-5 flex items-center gap-2">
+            <h2 className="text-lg font-semibold text-primary mb-5 flex items-center gap-2">
               <TrendingUp size={20} className="text-accent" /> Score Trend
             </h2>
             {trends.length === 0 ? (
-              <p className="text-base text-[#52525B] py-12 text-center">No data yet</p>
+              <p className="text-base text-muted py-12 text-center">No data yet</p>
             ) : (
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={trends}>
@@ -191,9 +191,9 @@ export default function Dashboard() {
             transition={{ delay: 0.25 }}
             className="card p-6"
           >
-            <h2 className="text-lg font-semibold text-[#FAFAFA] mb-5">Category Performance</h2>
+            <h2 className="text-lg font-semibold text-primary mb-5">Category Performance</h2>
             {catData.length === 0 ? (
-              <p className="text-base text-[#52525B] py-12 text-center">No data yet</p>
+              <p className="text-base text-muted py-12 text-center">No data yet</p>
             ) : (
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={catData} layout="vertical" margin={{ left: 100 }}>
@@ -216,9 +216,9 @@ export default function Dashboard() {
             transition={{ delay: 0.3 }}
             className="card p-6"
           >
-            <h2 className="text-lg font-semibold text-[#FAFAFA] mb-5">Critical Errors</h2>
+            <h2 className="text-lg font-semibold text-primary mb-5">Critical Errors</h2>
             {pieData.length === 0 ? (
-              <p className="text-base text-[#52525B] py-12 text-center">No data yet</p>
+              <p className="text-base text-muted py-12 text-center">No data yet</p>
             ) : (
               <div className="flex items-center gap-8">
                 <ResponsiveContainer width={180} height={180}>
@@ -235,7 +235,7 @@ export default function Dashboard() {
                   {pieData.map(e => (
                     <div key={e.name} className="flex items-center gap-2.5 text-base">
                       <div className={`w-4 h-4 rounded-full ${e.name === 'Clean' ? 'bg-green-500' : 'bg-red-500'}`} />
-                      <span className="text-[#A1A1AA]">{e.name}: <strong className="text-[#FAFAFA] text-lg">{e.value}</strong></span>
+                      <span className="text-secondary">{e.name}: <strong className="text-primary text-lg">{e.value}</strong></span>
                     </div>
                   ))}
                 </div>
@@ -250,7 +250,7 @@ export default function Dashboard() {
               transition={{ delay: 0.3 }}
               className="sm:col-span-2 card p-6"
             >
-              <h3 className="text-lg font-bold text-[#FAFAFA] mb-4 flex items-center gap-2">
+              <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
                 <Building2 size={20} className="text-accent" /> Department Overview
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -259,12 +259,12 @@ export default function Dashboard() {
                     onClick={() => navigate(`/departments/${d.id}`)}
                     className="p-3 rounded-xl bg-surface-hover hover:bg-accent/5 transition-colors cursor-pointer"
                   >
-                    <p className="text-sm font-medium text-[#A1A1AA]">{d.name}</p>
+                    <p className="text-sm font-medium text-secondary">{d.name}</p>
                     <div className="flex items-baseline gap-2 mt-1">
-                      <span className="text-xl font-bold text-[#FAFAFA]">{d.avg_score}</span>
-                      <span className="text-xs text-[#52525B]">avg</span>
+                      <span className="text-xl font-bold text-primary">{d.avg_score}</span>
+                      <span className="text-xs text-muted">avg</span>
                     </div>
-                    <p className="text-xs text-[#52525B]">{d.total_calls} calls</p>
+                    <p className="text-xs text-muted">{d.total_calls} calls</p>
                   </div>
                 ))}
               </div>
@@ -283,8 +283,8 @@ export default function Dashboard() {
               onClick={() => navigate(item.path)}
               className="card p-6 card-hover cursor-pointer"
             >
-              <p className="text-xl font-semibold text-[#FAFAFA]">{item.title}</p>
-              <p className="text-base text-[#A1A1AA] mt-2">{item.desc}</p>
+              <p className="text-xl font-semibold text-primary">{item.title}</p>
+              <p className="text-base text-secondary mt-2">{item.desc}</p>
             </motion.div>
           ))}
         </div>

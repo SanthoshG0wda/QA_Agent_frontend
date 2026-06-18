@@ -18,8 +18,8 @@ const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload?.length) {
     return (
       <div className="glass p-4 rounded-xl text-base shadow-glow">
-        <p className="text-[#A1A1AA] mb-1">{label}</p>
-        <p className="font-bold text-lg text-[#FAFAFA]">{payload[0].value}%</p>
+        <p className="text-secondary mb-1">{label}</p>
+        <p className="font-bold text-lg text-primary">{payload[0].value}%</p>
       </div>
     )
   }
@@ -88,8 +88,8 @@ export default function DepartmentDetail() {
               {stats.name.charAt(0).toUpperCase()}
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-[#FAFAFA]">{stats.name}</h1>
-              <p className="text-base text-[#A1A1AA] mt-1">Department Overview</p>
+              <h1 className="text-3xl font-bold text-primary">{stats.name}</h1>
+              <p className="text-base text-secondary mt-1">Department Overview</p>
             </div>
           </div>
         </motion.div>
@@ -106,12 +106,12 @@ export default function DepartmentDetail() {
                 className="card p-6"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <p className="text-sm text-[#A1A1AA] font-medium">{card.label}</p>
+                  <p className="text-sm text-secondary font-medium">{card.label}</p>
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${card.color}`}>
                     <Icon size={24} />
                   </div>
                 </div>
-                <p className="text-4xl font-bold text-[#FAFAFA]">{card.value}</p>
+                <p className="text-4xl font-bold text-primary">{card.value}</p>
               </motion.div>
             )
           })}
@@ -124,11 +124,11 @@ export default function DepartmentDetail() {
             transition={{ delay: 0.2 }}
             className="card p-6"
           >
-            <h2 className="text-lg font-semibold text-[#FAFAFA] mb-5 flex items-center gap-2">
+            <h2 className="text-lg font-semibold text-primary mb-5 flex items-center gap-2">
               <Users size={20} className="text-accent" /> Top Agents
             </h2>
             {stats.top_agents?.length === 0 ? (
-              <p className="text-base text-[#52525B] py-8 text-center">No agents in this department</p>
+              <p className="text-base text-muted py-8 text-center">No agents in this department</p>
             ) : (
               <div className="space-y-3">
                 {stats.top_agents.map((agent, i) => (
@@ -141,8 +141,8 @@ export default function DepartmentDetail() {
                         {agent.name.charAt(0).toUpperCase()}
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-[#FAFAFA]">{agent.name}</p>
-                        <p className="text-xs text-[#52525B]">{agent.total_calls} calls</p>
+                        <p className="text-sm font-medium text-primary">{agent.name}</p>
+                        <p className="text-xs text-muted">{agent.total_calls} calls</p>
                       </div>
                     </div>
                     <span className={`text-lg font-bold ${agent.avg_score >= 80 ? 'text-green-400' : agent.avg_score >= 60 ? 'text-yellow-400' : 'text-red-400'}`}>
@@ -160,11 +160,11 @@ export default function DepartmentDetail() {
             transition={{ delay: 0.25 }}
             className="card p-6"
           >
-            <h2 className="text-lg font-semibold text-[#FAFAFA] mb-5 flex items-center gap-2">
+            <h2 className="text-lg font-semibold text-primary mb-5 flex items-center gap-2">
               <Star size={20} className="text-accent" /> Recent Evaluations
             </h2>
             {stats.recent_evaluations?.length === 0 ? (
-              <p className="text-base text-[#52525B] py-8 text-center">No evaluations yet</p>
+              <p className="text-base text-muted py-8 text-center">No evaluations yet</p>
             ) : (
               <div className="space-y-2">
                 {stats.recent_evaluations.map((ev, i) => (
@@ -173,12 +173,12 @@ export default function DepartmentDetail() {
                     className="flex items-center justify-between p-3 rounded-xl hover:bg-surface-hover transition-colors cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-surface-hover flex items-center justify-center text-sm font-medium text-[#A1A1AA]">
+                      <div className="w-8 h-8 rounded-lg bg-surface-hover flex items-center justify-center text-sm font-medium text-secondary">
                         {ev.agent_name?.charAt(0) || '?'}
                       </div>
                       <div>
                         <p className="text-sm text-[#D4D4D8]">{ev.agent_name || 'Unknown'}</p>
-                        <p className="text-xs text-[#52525B]">
+                        <p className="text-xs text-muted">
                           {ev.created_at ? new Date(ev.created_at).toLocaleDateString() : ''}
                         </p>
                       </div>
@@ -206,12 +206,12 @@ export default function DepartmentDetail() {
             className="card overflow-hidden"
           >
             <div className="p-5 border-b border-surface-border">
-              <h2 className="text-xl font-bold text-[#FAFAFA]">All Agents</h2>
+              <h2 className="text-xl font-bold text-primary">All Agents</h2>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-base">
                 <thead>
-                  <tr className="text-[#A1A1AA] text-left border-b border-surface-border">
+                  <tr className="text-secondary text-left border-b border-surface-border">
                     <th className="p-4 font-medium">Agent</th>
                     <th className="p-4 font-medium">Calls</th>
                     <th className="p-4 font-medium">Evaluations</th>
@@ -230,8 +230,8 @@ export default function DepartmentDetail() {
                       onClick={() => navigate(`/agents/${a.id}`)}
                     >
                       <td className="p-4 font-medium text-[#D4D4D8]">{a.name}</td>
-                      <td className="p-4 text-[#A1A1AA]">{a.total_calls}</td>
-                      <td className="p-4 text-[#A1A1AA]">{a.evaluations}</td>
+                      <td className="p-4 text-secondary">{a.total_calls}</td>
+                      <td className="p-4 text-secondary">{a.evaluations}</td>
                       <td className="p-4">
                         <span className={`font-bold text-lg ${a.avg_score >= 80 ? 'text-green-400' : a.avg_score >= 60 ? 'text-yellow-400' : 'text-red-400'}`}>
                           {a.avg_score}%

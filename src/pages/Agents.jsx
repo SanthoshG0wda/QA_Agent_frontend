@@ -24,10 +24,10 @@ export default function Agents() {
       <div className="space-y-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-[#FAFAFA] flex items-center gap-3">
+            <h1 className="text-3xl font-bold text-primary flex items-center gap-3">
               <Users size={28} className="text-accent" /> Agents
             </h1>
-            <p className="text-base text-[#A1A1AA] mt-2">Manage your team and monitor their performance</p>
+            <p className="text-base text-secondary mt-2">Manage your team and monitor their performance</p>
           </div>
           <button onClick={() => navigate('/agents/new')} className="btn-primary flex items-center gap-2">
             <Plus size={20} /> Add Agent

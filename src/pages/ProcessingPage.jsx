@@ -101,8 +101,8 @@ export default function ProcessingPage() {
                   <CheckCircle2 size={48} className="text-green-400" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-[#FAFAFA]">Analysis Complete!</h2>
-                  <p className="text-[#A1A1AA] mt-2">Redirecting to evaluation results...</p>
+                  <h2 className="text-2xl font-bold text-primary">Analysis Complete!</h2>
+                  <p className="text-secondary mt-2">Redirecting to evaluation results...</p>
                 </div>
               </motion.div>
             ) : status === 'failed' ? (
@@ -116,7 +116,7 @@ export default function ProcessingPage() {
                   <XCircle size={48} className="text-red-400" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-[#FAFAFA]">Analysis Failed</h2>
+                  <h2 className="text-2xl font-bold text-primary">Analysis Failed</h2>
                   <p className="text-red-400 mt-2">{error || 'An error occurred during processing.'}</p>
                 </div>
                 <button onClick={handleRetry} className="btn-primary">
@@ -134,8 +134,8 @@ export default function ProcessingPage() {
                   <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto">
                     <Loader2 size={36} className="text-accent animate-spin" />
                   </div>
-                  <h2 className="text-2xl font-bold text-[#FAFAFA]">EchoPeak is analyzing your call...</h2>
-                  <p className="text-[#A1A1AA]">AI-powered conversation analysis in progress</p>
+                  <h2 className="text-2xl font-bold text-primary">EchoPeak is analyzing your call...</h2>
+                  <p className="text-secondary">AI-powered conversation analysis in progress</p>
                 </div>
 
                 <div className="space-y-3 max-w-md mx-auto text-left">
@@ -161,7 +161,7 @@ export default function ProcessingPage() {
                             ? 'bg-green-500/10 text-green-400'
                             : stepStatus === 'processing'
                               ? 'bg-accent/10 text-accent'
-                              : 'bg-[#52525B]/10 text-[#52525B]'
+                              : 'bg-[#52525B]/10 text-muted'
                         }`}>
                           {stepStatus === 'completed' ? (
                             <CheckCircle2 size={18} />
@@ -175,8 +175,8 @@ export default function ProcessingPage() {
                           stepStatus === 'completed'
                             ? 'text-green-400'
                             : stepStatus === 'processing'
-                              ? 'text-[#FAFAFA]'
-                              : 'text-[#A1A1AA]'
+                              ? 'text-primary'
+                              : 'text-secondary'
                         }`}>
                           {step.label}
                         </span>
@@ -185,7 +185,7 @@ export default function ProcessingPage() {
                   })}
                 </div>
 
-                <div className="flex items-center justify-center gap-2 text-sm text-[#52525B]">
+                <div className="flex items-center justify-center gap-2 text-sm text-muted">
                   <AlertCircle size={14} />
                   <span>This usually takes 20–30 seconds</span>
                 </div>

@@ -65,8 +65,8 @@ export default function NotificationToastProvider({ children }) {
                       <CheckCircle size={16} className="text-green-400" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold text-[#FAFAFA]">{toast.title}</p>
-                      <p className="text-xs text-[#A1A1AA] mt-0.5 whitespace-pre-line">{toast.message}</p>
+                      <p className="text-sm font-semibold text-primary">{toast.title}</p>
+                      <p className="text-xs text-secondary mt-0.5 whitespace-pre-line">{toast.message}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-1 shrink-0">
@@ -80,7 +80,7 @@ export default function NotificationToastProvider({ children }) {
                     )}
                     <button
                       onClick={() => dismiss(toast.id)}
-                      className="p-1.5 rounded-lg hover:bg-surface-hover text-[#52525B] hover:text-[#A1A1AA] transition-colors"
+                      className="p-1.5 rounded-lg hover:bg-surface-hover text-muted hover:text-secondary transition-colors"
                     >
                       <X size={14} />
                     </button>

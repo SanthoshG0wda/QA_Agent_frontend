@@ -74,10 +74,10 @@ export default function TranscriptViewer({ transcript, diarized, agentCustomer, 
   if (!available.length) {
     return (
       <div className="card p-6">
-        <h3 className="font-semibold text-[#FAFAFA] mb-2 flex items-center gap-2">
+        <h3 className="font-semibold text-primary mb-2 flex items-center gap-2">
           <MessageSquare size={16} /> Transcript
         </h3>
-        <p className="text-sm text-[#52525B]">No transcript available</p>
+        <p className="text-sm text-muted">No transcript available</p>
       </div>
     )
   }
@@ -91,7 +91,7 @@ export default function TranscriptViewer({ transcript, diarized, agentCustomer, 
       className="card overflow-hidden"
     >
       <div className="p-4 border-b border-surface-border">
-        <h3 className="font-semibold text-[#FAFAFA] flex items-center gap-2">
+        <h3 className="font-semibold text-primary flex items-center gap-2">
           <MessageSquare size={16} /> Transcript
         </h3>
       </div>
@@ -103,7 +103,7 @@ export default function TranscriptViewer({ transcript, diarized, agentCustomer, 
             className={`px-3 py-2 text-sm font-medium border-b-2 transition-all duration-200 ${
               t.key === active.key
                 ? 'border-accent text-accent-light'
-                : 'border-transparent text-[#52525B] hover:text-[#A1A1AA]'
+                : 'border-transparent text-muted hover:text-secondary'
             }`}
           >
             {t.label}

@@ -18,10 +18,10 @@ export default function AgentCard({ agent, index = 0 }) {
           {agent.name.charAt(0).toUpperCase()}
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="text-lg font-semibold text-[#FAFAFA] truncate group-hover:text-accent-light transition-colors">
+          <h3 className="text-lg font-semibold text-primary truncate group-hover:text-accent-light transition-colors">
             {agent.name}
           </h3>
-          <p className="text-sm text-[#52525B] truncate">{agent.email}</p>
+          <p className="text-sm text-muted truncate">{agent.email}</p>
         </div>
         {agent.average_score > 0 && (
           <div className={`text-lg font-bold px-4 py-1.5 rounded-xl ${
@@ -40,13 +40,13 @@ export default function AgentCard({ agent, index = 0 }) {
       </div>
       <div className="flex items-center gap-6 text-base pt-4 border-t border-surface-border">
         <div className="flex items-center gap-2">
-          <Phone size={18} className="text-[#52525B]" />
-          <span className="text-[#A1A1AA]">{agent.total_calls} calls</span>
+          <Phone size={18} className="text-muted" />
+          <span className="text-secondary">{agent.total_calls} calls</span>
         </div>
         {agent.average_score > 0 && (
           <div className="flex items-center gap-2">
-            <Star size={18} className="text-[#52525B]" />
-            <span className="text-[#A1A1AA]">{agent.average_score}% avg</span>
+            <Star size={18} className="text-muted" />
+            <span className="text-secondary">{agent.average_score}% avg</span>
           </div>
         )}
       </div>

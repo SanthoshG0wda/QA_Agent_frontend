@@ -53,8 +53,8 @@ export default function AddAgent() {
               <UserPlus size={28} className="text-accent-light" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-[#FAFAFA]">Add Agent</h1>
-              <p className="text-base text-[#A1A1AA]">Create a new agent profile</p>
+              <h1 className="text-2xl font-bold text-primary">Add Agent</h1>
+              <p className="text-base text-secondary">Create a new agent profile</p>
             </div>
           </div>
 
@@ -65,17 +65,17 @@ export default function AddAgent() {
               </div>
             )}
             <div>
-              <label className="block text-base font-medium text-[#A1A1AA] mb-2">Name</label>
+              <label className="block text-base font-medium text-secondary mb-2">Name</label>
               <input type="text" value={name} onChange={(e) => setName(e.target.value)}
                 className="input-dark" placeholder="Agent name" />
             </div>
             <div>
-              <label className="block text-base font-medium text-[#A1A1AA] mb-2">Email</label>
+              <label className="block text-base font-medium text-secondary mb-2">Email</label>
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
                 className="input-dark" placeholder="agent@example.com" />
             </div>
             <div>
-              <label className="block text-base font-medium text-[#A1A1AA] mb-2">Department</label>
+              <label className="block text-base font-medium text-secondary mb-2">Department</label>
               <select value={departmentId} onChange={(e) => setDepartmentId(e.target.value)}
                 className="input-dark w-full appearance-none cursor-pointer">
                 <option value="">Select department</option>
