@@ -47,7 +47,7 @@ export default function Sidebar() {
           />
         )}
       </AnimatePresence>
-      <aside className={`fixed lg:static inset-y-0 left-0 z-40 w-[300px] bg-surface-sidebar border-r border-surface-border flex flex-col transition-transform duration-300 ${
+      <aside className={`fixed lg:sticky lg:top-0 lg:self-start lg:h-screen inset-y-0 left-0 z-40 w-[300px] bg-surface-sidebar border-r border-surface-border flex flex-col transition-transform duration-300 ${
         collapsed ? '-translate-x-full' : 'translate-x-0'
       } lg:translate-x-0`}>
         <div className="p-7 border-b border-surface-border">
