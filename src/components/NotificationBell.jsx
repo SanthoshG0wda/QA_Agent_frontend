@@ -5,29 +5,29 @@ import { useNavigate } from 'react-router-dom'
 import { getUnreadCount, listNotifications, markNotificationRead, markAllNotificationsRead } from '../services/api'
 import { showNotificationToast } from './NotificationToast'
 
+const toastedIds = new Set()
+
 export default function NotificationBell() {
   const [open, setOpen] = useState(false)
   const [count, setCount] = useState(0)
   const [notifs, setNotifs] = useState([])
-  const prevCountRef = useRef(0)
   const ref = useRef(null)
   const navigate = useNavigate()
 
   const load = useCallback(async () => {
     try {
       const [c, n] = await Promise.all([getUnreadCount(), listNotifications()])
-      if (c.count > prevCountRef.current) {
-        const newNotifs = n.filter(x => !x.read)
-        if (newNotifs.length > 0) {
-          const latest = newNotifs[0]
+      const unread = n.filter(x => !x.read)
+      for (const notif of unread) {
+        if (!toastedIds.has(notif.id)) {
+          toastedIds.add(notif.id)
           showNotificationToast(
-            latest.title || 'Evaluation Completed',
-            latest.message || 'New notification',
-            latest.evaluation_id,
+            notif.title || 'Evaluation Completed',
+            notif.message || 'New notification',
+            notif.evaluation_id,
           )
         }
       }
-      prevCountRef.current = c.count
       setCount(c.count)
       setNotifs(n.slice(0, 10))
     } catch {}
