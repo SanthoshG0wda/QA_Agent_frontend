@@ -5,7 +5,7 @@ import PageTransition from '../components/PageTransition'
 import ConfirmModal from '../components/ConfirmModal'
 import { TableSkeleton } from '../components/Skeleton'
 import EmptyState from '../components/EmptyState'
-import { Shield, Plus, Trash2, User, Calendar, X } from 'lucide-react'
+import { Shield, Plus, Trash2, User, Calendar, X, Loader2 } from 'lucide-react'
 
 export default function Users() {
   const [users, setUsers] = useState([])
@@ -15,6 +15,8 @@ export default function Users() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [role, setRole] = useState('agent')
+  const [creating, setCreating] = useState(false)
+  const [error, setError] = useState('')
   const [deleteTarget, setDeleteTarget] = useState(null)
 
   const load = () => {
@@ -26,10 +28,18 @@ export default function Users() {
 
   const handleCreate = async (e) => {
     e.preventDefault()
-    await createUser(name, email, password, role)
-    setName(''); setEmail(''); setPassword(''); setRole('agent')
-    setShowForm(false)
-    load()
+    if (!name.trim() || !email.trim() || !password.trim()) return
+    setCreating(true)
+    setError('')
+    try {
+      await createUser(name.trim(), email.trim(), password, role)
+      setName(''); setEmail(''); setPassword(''); setRole('agent')
+      setShowForm(false)
+      load()
+    } catch (err) {
+      setError(err?.response?.data?.error || err?.message || 'Failed to create user')
+    }
+    setCreating(false)
   }
 
   const handleDelete = async () => {
@@ -87,7 +97,17 @@ export default function Users() {
                 <option value="admin">Admin</option>
               </select>
             </div>
-            <button type="submit" className="btn-primary">Create User</button>
+            {error && (
+              <p className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-2">
+                {error}
+              </p>
+            )}
+            <button type="submit" disabled={creating}
+              className="btn-primary flex items-center gap-2"
+            >
+              {creating ? <Loader2 size={18} className="animate-spin" /> : null}
+              {creating ? 'Creating...' : 'Create User'}
+            </button>
           </motion.form>
         )}
 
