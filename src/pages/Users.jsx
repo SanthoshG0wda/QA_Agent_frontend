@@ -44,9 +44,13 @@ export default function Users() {
 
   const handleDelete = async () => {
     if (!deleteTarget) return
-    await deleteUser(deleteTarget)
-    setDeleteTarget(null)
-    load()
+    try {
+      await deleteUser(deleteTarget)
+      setDeleteTarget(null)
+      load()
+    } catch (err) {
+      setError(err?.response?.data?.error || 'Failed to delete user')
+    }
   }
 
   return (
