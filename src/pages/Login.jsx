@@ -50,11 +50,7 @@ export default function Login() {
             <h2 className="text-4xl font-bold text-primary leading-tight">Analyze Every Conversation.<br />Improve Every Interaction.</h2>
             <p className="text-lg text-secondary leading-relaxed max-w-md">AI-powered call evaluation, speaker intelligence, agent coaching, and conversation analytics in one unified platform.</p>
           </div>
-          <div className="flex gap-4 pt-4">
-            {['Deepgram', 'Groq', 'NVIDIA'].map(p => (
-              <span key={p} className="text-xs text-muted font-medium px-3 py-1.5 rounded-full border border-surface-border">{p}</span>
-            ))}
-          </div>
+          
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
